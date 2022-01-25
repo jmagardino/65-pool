@@ -25,7 +25,8 @@ config :pool, PoolWeb.Endpoint,
   secret_key_base: "gtvTIbr7VNAv4qGmsvHccEnR9i6Z0szKK3L45aKWIdIApGZbiuJWDO6qZYhCBLgE",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support

@@ -32,3 +32,5 @@ pool-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignores system-generated metadata files
+.DS_Store
