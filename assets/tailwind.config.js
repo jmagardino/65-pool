@@ -7,7 +7,19 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'blue': '#4A88EA',
+        'blue-hover': '#75A4EF',
+        'gold': '#FCC885',
+        'darkgray': '#5B5D6B',
+        'gray': '#696A72'
+      },
+      fontFamily: {
+        'body': ['"Readex Pro"', 'sans-serif'],
+        'display': ['"Red Hat Display"', 'sans-serif']
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms')
