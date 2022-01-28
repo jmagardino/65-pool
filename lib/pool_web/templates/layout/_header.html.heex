@@ -25,7 +25,7 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
             <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-            <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">My Pools</a>
+            <%= link "My Pools", to: Routes.contest_path(@conn, :index), class: "text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium"%>
             <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Find a Pool</a>
             <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Create a Pool</a>
           </div>

@@ -1,0 +1,26 @@
+<h1>Listing Contests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for contest <- @contests do %>
+    <tr>
+      <td><%= contest.name %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.contest_path(@conn, :show, contest) %></span>
+        <span><%= link "Edit", to: Routes.contest_path(@conn, :edit, contest) %></span>
+        <span><%= link "Delete", to: Routes.contest_path(@conn, :delete, contest), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Contest", to: Routes.contest_path(@conn, :new) %></span>
