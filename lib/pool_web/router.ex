@@ -21,6 +21,8 @@ defmodule PoolWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/contests", ContestController
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,13 @@
+<h1>Show Contest</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @contest.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
+<span><%= link "Back", to: Routes.contest_path(@conn, :index) %></span>
