@@ -1,57 +1,30 @@
-<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <div class="mb-4">
-    <%= label f, :email, class: "block text-grey-darker text-sm font-bold mb-2" %>
-    <%= email_input f, :email, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
-    <%= error_tag f, :email %>
-  </div>
-
-  <div class="mb-4">
-    <%= label f, :password, class: "block text-grey-darker text-sm font-bold mb-2" %>
-    <%= password_input f, :password, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" %>
-    <%= error_tag f, :password %>
-  </div>
-
-  <div>
-    <%= submit "Register", class: "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" %>
-  </div>
-</.form>
-
-<p class= "pt-5">
-  <%= link "Already have an account? Log In", to: Routes.user_session_path(@conn, :new) %>
-</p>
-
-<p>
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
-</div>
-<%# 
-<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+<div class="mt-8 md:mt-24 mx-12 md:mx-auto md:max-w-lg md:px-16 md:py-12 border border-slate-200 rounded-lg bg-white shadow-md px-8 pt-6 pb-10 mb-4 flex flex-col">
+  <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
     <div class="mb-4">
-      <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-        Username
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text" placeholder="Username">
+      <%= label f, :email, class: "block text-grey-darker text-sm font-bold mb-2" %>
+      <%= email_input f, :email, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
+      <%= error_tag f, :email %>
     </div>
-    <div class="mb-6">
-      <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-        Password
-      </label>
-      <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
-      <p class="text-red text-xs italic">Please choose a password.</p>
+    <div class="mb-4">
+      <%= label f, :password, class: "block text-grey-darker text-sm font-bold mb-2" %>
+      <%= password_input f, :password, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" %>
+      <%= error_tag f, :password %>
     </div>
-    <div class="flex items-center justify-between">
-      <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
-        Sign In
-      </button>
-      <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
-        Forgot Password?
-      </a>
+    <div class="text-center mt-8 w-48 mx-auto">
+      <%= submit "Register", class: "w-full bg-blue hover:bg-blue-hover text-white font-bold py-2 px-4 rounded" %>
     </div>
-</div> %>
+  </.form>
+  <div class="text-blue mx-auto mt-12 text-center grid grid-cols-1 gap-y-4">
+    <p class= "pt-5">
+      <%= link "Already have an account? Log In", to: Routes.user_session_path(@conn, :new) %>
+    </p>
+    <p>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+    </p>
+  </div>
+</div>
