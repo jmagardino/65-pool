@@ -1,36 +1,32 @@
-<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-<.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+<div class="mt-8 md:mt-24 mx-12 md:mx-auto md:max-w-lg md:px-16 md:py-12 border border-slate-200 rounded-lg bg-white shadow-md px-8 pt-6 pb-10 mb-4 flex flex-col">
+  <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
+    <%= if @error_message do %>
+      <div class="alert alert-danger">
+        <p><%= @error_message %></p>
+      </div>
+    <% end %>
+    <div class="mb-4">
+      <%= label f, :email, class: "block text-grey-darker text-sm font-bold mb-2" %>
+      <%= email_input f, :email, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
     </div>
-  <% end %>
-
-  <div class="mb-4">
-    <%= label f, :email, class: "block text-grey-darker text-sm font-bold mb-2" %>
-    <%= email_input f, :email, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
+    <div class="mb-4">
+      <%= label f, :password, class: "block text-grey-darker text-sm font-bold mb-2" %>
+      <%= password_input f, :password, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" %>
+    </div>
+    <div class="mt-6 flex">
+      <%= label f, :remember_me, "Remember me" %>
+      <%= checkbox f, :remember_me, class: "ml-2 my-auto" %>
+    </div>
+    <div class="text-center mt-8 w-48 mx-auto">
+      <%= submit "Log In", class: "w-full bg-blue hover:bg-blue-hover text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  </.form>
+  <div class="text-blue mx-auto mt-6 text-center grid grid-cols-1 gap-y-4">
+    <p class= "pt-5">
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new) %>
+    </p>
+    <p>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+    </p>
   </div>
-
-  <div class="mb-4">
-    <%= label f, :password, class: "block text-grey-darker text-sm font-bold mb-2" %>
-    <%= password_input f, :password, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" %>
-  </div>
-
-  <div class="mb-4">
-  <%= label f, :remember_me, "Remember me" %>
-  <%= checkbox f, :remember_me %>
-  </div>
-
-  <div>
-    <%= submit "Log In", class: "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" %>
-  </div>
-</.form>
-
-<p class= "pt-5">
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %>
-</p>
-
-<p>
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
 </div>
