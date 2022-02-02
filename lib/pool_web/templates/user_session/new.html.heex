@@ -22,11 +22,14 @@
     </div>
   </.form>
   <div class="text-blue mx-auto mt-12 text-center grid grid-cols-1 gap-y-4">
+    <div class="mt-5">
+      <p class="inline-block text-slate-700">Don't have an account?</p>
+      <p class= "inline-block">
+        <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out duration-200" %>
+      </p>
+    </div>
     <p>
-      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out" %>
-    </p>
-    <p>
-      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out" %>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out duration-200" %>
     </p>
   </div>
 </div>
