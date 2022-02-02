@@ -16,15 +16,18 @@
       <%= error_tag f, :password %>
     </div>
     <div class="text-center mt-8 w-48 mx-auto">
-      <%= submit "Register", class: "w-full bg-blue hover:bg-blue-hover text-white font-bold py-2 px-4 rounded" %>
+      <%= submit "Register", class: "w-full bg-blue hover:bg-blue-hover outline outline-0 hover:outline hover:outline-1 hover:outline-blue hover:shadow-md transition-all ease-in-out duration-300 text-white font-bold py-2 px-4 rounded" %>
     </div>
   </.form>
   <div class="text-blue mx-auto mt-12 text-center grid grid-cols-1 gap-y-4">
-    <p class= "pt-5">
-      <%= link "Already have an account? Log In", to: Routes.user_session_path(@conn, :new) %>
-    </p>
+    <div class="mt-5">
+      <p class="inline-block text-slate-700">Already have an account?</p>
+      <p class= "inline-block">
+        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out" %>
+      </p>
+    </div>
     <p>
-      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "hover:text-blue-hover transition-all ease-in-out" %>
     </p>
   </div>
 </div>
