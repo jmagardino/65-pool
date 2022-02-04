@@ -5,7 +5,7 @@
 <!-- main container -->
 <div class="grid grid-cols-1 clear-both">
   <!-- contests container -->
-  <div class="mx-auto grid auto-rows-auto md:w-3/5 w-4/5 h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y bg-slate-50">
+  <div class="mx-auto grid auto-rows-auto md:w-3/5 w-4/5 h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-slate-50">
     <%= for contest <- @contests do %>
       <!-- contest row -->
       <div class="grid justify-items-center md:grid-cols-12 md:grid-rows-1 grid-rows-2 md:gap-x-1 gap-y-0 md:p-4 pl-0 pr-2 pb-2 pt-1 min-h-max"
