@@ -1,5 +1,5 @@
 <!-- heading -->
-<div class="md:text-5xl text-3xl md:my-14 my-8 float-right w-1/2 border-b-4 border-blue-hover md:py-4 py-1">
+<div class="md:text-4xl text-3xl md:my-14 my-8 float-right w-1/2 border-b-4 border-blue-hover md:py-4 py-1">
   <h1 class="text-blue font-semibold">My Pools</h1>
 </div>
 <!-- main container -->
@@ -12,12 +12,14 @@
                 style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
         <!-- avatar -->
         <div class="my-auto row-start-2 row-span-2 md:row-span-2 w-12 lg:w-16">
-          <img class="md:col-span-1 mx-auto my-auto text-center border-2 border-blue rounded-full"
+          <a href="#">
+            <img class="md:col-span-1 mx-auto my-auto text-center border-2 border-blue rounded-full"
                         src="https://picsum.photos/200" alt="">
+          </a>
         </div>
-        <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-semibold text-blue text-md md:text-xl lg:text-2xl">
+        <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-semibold text-blue hover:text-blue-hover text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
           <!-- contest name -->
-          <h4><%= contest.name %></h4>
+          <a href="#"><h4><%= contest.name %></h4></a>
         </div>
         <!-- ownership status -->
         <div class="md:col-span-1 col-start-5 col-span-1 my-auto mx-auto text-xs text-darkgray">
@@ -42,7 +44,7 @@
           </div>
         </div>
         <!-- action button -->
-        <button class="mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-blue hover:text-blue-hover">
+        <button class="mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-blue hover:text-blue-hover transition-all ease-in-out duration-200">
           <i class="fa-regular fa-angle-right"></i>
         </button>
       </div>
