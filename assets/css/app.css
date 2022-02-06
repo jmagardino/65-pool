@@ -4,8 +4,8 @@
 
 /* Custom Components */
 .hero-image {
-  width: 20rem;
-  height: 20rem;
+  width: 16rem;
+  height: 16rem;
   background-image: url("/images/landing-player.png");
   background-repeat: no-repeat;
   background-position: center;
