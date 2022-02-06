@@ -9,14 +9,14 @@
     </div>
     <!-- Dropdown menu, show/hide based on menu state. -->
     <div id="profile-menu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-      <%= link "Your Profile", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm text-blue hover:text-blue-hover"%>
-      <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-blue hover:text-blue-hover" %>
+      <%= link "Your Profile", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm text-theme-blue hover:text-blue-hover"%>
+      <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-theme-blue hover:text-blue-hover" %>
     </div>
   </div>
 <% else %>
   <div class="">
-    <li><%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium" %></li>
-    <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium" %></li>
+    <li><%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-theme-blue hover:bg-gray-700 hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
+    <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue hover:bg-gray-700 hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
   </div>
 <% end %>
 </ul>
