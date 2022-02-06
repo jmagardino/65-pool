@@ -15,8 +15,8 @@
   </div>
 <% else %>
   <div class="">
-    <li><%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-theme-blue hover:bg-gray-700 hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
-    <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue hover:bg-gray-700 hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
+    <li><%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
+    <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium" %></li>
   </div>
 <% end %>
 </ul>

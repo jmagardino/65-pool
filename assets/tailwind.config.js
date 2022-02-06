@@ -16,7 +16,7 @@ module.exports = {
         'theme-gray': '#696A72'
       },
       fontFamily: {
-        'body': ['"Readex Pro"', 'sans-serif'],
+        'body': ['"Rubik"', 'sans-serif'],
         'display': ['"Red Hat Display"', 'sans-serif']
       }
     },
