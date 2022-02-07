@@ -1,9 +1,9 @@
 <nav class="bg-slate-100 border-slate-200 shadow-md">
-  <div class="max-w-7xl mx-auto px-2 md:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-2 md:px-6 lg:px-8 z-50">
     <div class="relative flex items-center justify-between h-16">
-      <div class="absolute inset-y-0 right-0 flex items-center md:hidden">
-        <!-- Mobile menu button-->
-        <button type="button" class="hamburger-btn inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+      <!-- hamburger button-->
+      <div class="absolute inset-y-0 right-0 flex items-center md:hidden z-50">
+        <button type="button" id="hamburger" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -12,6 +12,7 @@
           </svg>
         </button>
       </div>
+      <!-- nav links -->
       <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
         <div class="flex-shrink-0 flex items-center">
           <svg class="block h-8 fill-theme-blue" viewBox="0 0 328 84" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
@@ -31,31 +32,48 @@
           </div>
         </div>
       </div>
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">        
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
         <%= render "_user_menu.html", assigns %>
       </div>
     </div>
   </div>
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="hidden" id="mobile-menu">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">My Pools</a>
-      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">Find a Pool</a>
-      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">Create a Pool</a>
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="hidden fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="relative top-16 h-full bg-gray-600 bg-opacity-0 transition-opacity" aria-hidden="true"></div>
+      <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+        <div class="relative w-screen max-w-md">          
+          <div class="relative top-16 h-full flex flex-col py-6 bg-white bg-opacity-95 shadow-xl overflow-y-scroll">
+            <div class="px-4 sm:px-6">
+              <h2 class="text-lg font-medium text-gray-900" id="slide-over-title"></h2>
+            </div>
+            <div class="mt-6 relative flex-1 px-4 sm:px-6">
+              <!-- menu items -->
+              <div class="absolute inset-0 px-4 sm:px-6">
+                <div class="h-full" aria-hidden="true">
+                  <div class="px-2 pt-2 pb-3 space-y-1 flex flex-col items-end text-xl">
+                    <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md font-medium" aria-current="page">Dashboard</a>
+                    <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md font-medium">My Pools</a>
+                    <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md font-medium">Find a Pool</a>
+                    <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md font-medium">Create a Pool</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <script>
-    const btnMenu = document.querySelector("button.hamburger-btn");
-    const menuMobile = document.querySelector("#mobile-menu");
-    btnMenu.addEventListener("click", () => {
-    menuMobile.classList.toggle("hidden");
+    const hamburger = document.querySelector("#hamburger");
+    const mobileMenu = document.querySelector("#mobile-menu");
+    const menuClose = document.querySelector("#menu-close");
+    hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
     });
-
-    const btnProfile = document.querySelector("#profile-btn");
-    const menuProfile = document.querySelector("#profile-menu");
-    btnProfile.addEventListener("click", () => {
-    menuProfile.classList.toggle("hidden");
+    menuClose.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
     });
   </script>
 </nav>
