@@ -9,14 +9,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'blue': '#4A88EA',
-        'blue-hover': '#75A4EF',
-        'gold': '#FCC885',
-        'darkgray': '#5B5D6B',
-        'gray': '#696A72'
+        'theme-blue': '#4A88EA',
+        'theme-blue-light': '#75A4EF',
+        'theme-gold': '#FCC885',
+        'theme-darkgray': '#5B5D6B',
+        'theme-gray': '#696A72'
       },
       fontFamily: {
-        'body': ['"Readex Pro"', 'sans-serif'],
+        'body': ['"Rubik"', 'sans-serif'],
         'display': ['"Red Hat Display"', 'sans-serif']
       }
     },
