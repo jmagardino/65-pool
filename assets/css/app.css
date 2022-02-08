@@ -12,6 +12,25 @@
   background-size: contain;
 }
 
+/* Icons */
+.fa-trophy.trophy-none .fa-secondary,
+.fa-trophy.trophy-none .fa-primary {
+  --fa-primary-color: rgb(245, 245, 245);
+  --fa-secondary-color: rgb(250, 250, 250);
+  --fa-primary-opacity: 1;
+  --fa-secondary-opacity: 1;
+  stroke: rgb(240, 240, 240);
+  stroke-width: 1.5rem;
+}
+
+.fa-trophy .fa-secondary,
+.fa-trophy .fa-primary {
+  --fa-primary-opacity: 1;
+  --fa-secondary-opacity: 1;
+  stroke: rgb(106, 106, 106);
+  stroke-width: 1rem;
+}
+
 /* This file is for your main application CSS */
 
 /* Alerts and form errors used by phx.new */
