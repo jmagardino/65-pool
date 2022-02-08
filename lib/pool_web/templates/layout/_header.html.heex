@@ -14,7 +14,7 @@
       </div>
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex-shrink-0 flex items-center">
-          <svg class="block h-6 fill-blue" viewBox="0 0 328 84" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+          <svg class="block h-6 fill-theme-blue" viewBox="0 0 328 84" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
             <g transform="scale(1.000000,-1.000000) translate(0,-84)">
               <path d="M 36.460000 67.600000 L 12.430000 67.600000 L 1.000000 2.350000 L 18.640000 2.350000 L 22.150000 22.420000 C 41.590000 22.240000 56.530000 25.480000 60.040000 45.370000 C 62.830000 61.120000 54.190000 67.600000 36.460000 67.600000 Z M 42.940000 47.080000 C 41.140000 36.910000 36.730000 36.100000 24.490000 36.010000 L 27.820000 55.180000 L 33.940000 55.180000 C 37.990000 55.180000 44.470000 55.720000 42.940000 47.080000 Z M 95.860000 53.290000 C 81.100000 53.290000 67.780000 43.480000 65.080000 28.360000 C 62.290000 12.070000 72.820000 1.000000 88.480000 1.000000 C 103.150000 1.000000 116.470000 10.990000 119.170000 26.020000 C 122.050000 42.400000 111.430000 53.290000 95.860000 53.290000 Z M 95.050000 38.530000 C 100.450000 38.530000 103.870000 34.570000 102.790000 28.450000 C 101.440000 21.070000 95.590000 16.030000 89.290000 16.030000 C 83.890000 16.030000 80.560000 19.990000 81.640000 26.110000 C 82.990000 33.490000 88.750000 38.530000 95.050000 38.530000 Z M 157.510000 53.290000 C 142.750000 53.290000 129.430000 43.480000 126.730000 28.360000 C 123.940000 12.070000 134.470000 1.000000 150.130000 1.000000 C 164.800000 1.000000 178.120000 10.990000 180.820000 26.020000 C 183.700000 42.400000 173.080000 53.290000 157.510000 53.290000 Z M 156.700000 38.530000 C 162.100000 38.530000 165.520000 34.570000 164.440000 28.450000 C 163.090000 21.070000 157.240000 16.030000 150.940000 16.030000 C 145.540000 16.030000 142.210000 19.990000 143.290000 26.110000 C 144.640000 33.490000 150.400000 38.530000 156.700000 38.530000 Z M 206.290000 20.620000 L 215.020000 69.850000 L 198.460000 69.850000 L 189.910000 21.700000 C 188.110000 11.710000 187.210000 1.180000 201.430000 1.000000 C 204.130000 1.000000 208.090000 1.090000 210.790000 2.440000 L 211.960000 14.500000 C 211.510000 14.320000 210.340000 14.140000 208.630000 14.140000 C 205.750000 14.140000 205.390000 15.220000 206.290000 20.620000 Z" transform="scale(1.000000,1.000000) translate(112.560786,-0.319939)" opacity="1.000000"></path>
               <path d="M 109.401608 12.999941 L 3.215308 12.999941 L 0.999908 0.999941 L 107.186208 0.999941 Z" transform="scale(1.000000,1.000000) translate(-0.579308,1.030059)" opacity="1.000000"></path>
@@ -24,18 +24,18 @@
         </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
-            <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-            <%= link "My Pools", to: Routes.contest_path(@conn, :index), class: "text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium"%>
-            <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Find a Pool</a>
-            <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover px-3 py-2 rounded-md text-sm font-medium">Create a Pool</a>
+            <a href="#" class="text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+            <%= link "My Pools", to: Routes.contest_path(@conn, :index), class: "text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium"%>
+            <a href="#" class="text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium">Find a Pool</a>
+            <a href="#" class="text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium">Create a Pool</a>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button type="button" class="bg-gray-800 p-1 rounded-full text-blue hover:text-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+        <button type="button" class="p-1 rounded-full text-theme-blue hover:text-theme-blue-light">
           <i class="fa-regular fa-envelope h-6 w-6 mx-4"></i>        
         </button>
-        <button type="button" class="bg-gray-800 p-1 rounded-full text-blue hover:text-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+        <button type="button" class="p-1 rounded-full text-theme-blue hover:text-theme-blue-light">
           <i class="fa-regular fa-bell h-6 w-6 mx-4"></i>          
         </button>
         <%= render "_user_menu.html", assigns %>
@@ -45,10 +45,10 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   <div class="hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-      <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover block px-3 py-2 rounded-md text-base font-medium">My Pools</a>
-      <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover block px-3 py-2 rounded-md text-base font-medium">Find a Pool</a>
-      <a href="#" class="text-blue hover:bg-gray-700 hover:text-blue-hover block px-3 py-2 rounded-md text-base font-medium">Create a Pool</a>
+      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
+      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">My Pools</a>
+      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">Find a Pool</a>
+      <a href="#" class="text-theme-blue hover:text-theme-blue-light block px-3 py-2 rounded-md text-base font-medium">Create a Pool</a>
     </div>
   </div>
   <script>
