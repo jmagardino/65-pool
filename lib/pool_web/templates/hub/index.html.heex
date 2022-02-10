@@ -5,7 +5,7 @@
 <!-- main container -->
 <div class="grid grid-cols-1 clear-both">
   <!-- card container -->
-  <div class="bg-slate-50 h-fit w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl border border-slate-200 shadow">
+  <div class="bg-slate-50 h-fit w-11/12 md:max-w-3xl mx-auto mb-8 md:mb-12 p-3 md:p-6 rounded-xl border border-slate-200 shadow">
     <h3 class="mb-2 md:mb-12 text-theme-darkgray font-medium text-2xl md:text-3xl">Picks Needed</h3>
     <!-- contests container -->
     <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-white">
@@ -45,6 +45,43 @@
         <!-- action button -->
         <button class="my-auto col-start-5 col-span-2 md:col-start-6 row-start-1 row-span-2 md:row-span-1 w-auto md:w-max self-center justify-self-end md:justify-self-auto mr-2 md:mr-4 text-md md:text-xl bg-theme-blue hover:bg-theme-blue-light text-white font-medium py-2 px-3 rounded transition-all ease-in-out duration-200">
           Pick Now
+        </button>
+      </div>
+      <!-- for loop end -->
+    </div>
+  </div>
+  <!-- *** upcoming games *** -->
+  <!-- card container -->
+  <div class="bg-slate-50 h-fit w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl border border-slate-200 shadow">
+    <h3 class="mb-2 md:mb-12 text-theme-darkgray font-medium text-2xl md:text-3xl">Upcoming Games</h3>
+    <!-- games container -->
+    <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-white">
+      <!-- for loop start -->
+      <!-- game row -->
+      <div class="grid justify-items-center grid-cols-12 grid-rows-4 md:gap-x-1 gap-y-0 md:p-4 px-2 py-2 min-h-max text-theme-darkgray">
+        <!-- team 1 -->
+        <div class="col-start-1 col-span-4 row-start-1 row-span-4 self-center">
+          <img class="" src="https://sportteamslogo.com/api?key=002d905d4ba94e708e355a4b3641f55a&size=medium&tid=4416" alt="">
+          <p class="text-sm">CIN</p>
+        </div>
+        <!-- spread -->
+        <p class="col-start-4 col-span-1 row-start-4 text-xs font-medium"></p>
+        <!-- game time -->
+        <p class="col-start-4 col-span-5 row-start-1 text-xs">Feb 13 6:30 PM</p>
+        <!-- at -->
+        <p class="col-start-5 col-span-3 row-start-2 row-span-2 self-center text-md">at</p>
+        <!-- over/under -->
+        <p class="col-start-5 col-span-3 row-start-4 text-xs font-medium">O/U 48.5</p>
+        <!-- spread -->
+        <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium">-4</p>
+        <!-- team 2 -->
+        <div class="col-start-8 col-span-4 row-start-1 row-span-4 self-center">
+          <img class="" src="https://sportteamslogo.com/api?key=002d905d4ba94e708e355a4b3641f55a&size=medium&tid=4387" alt="">
+          <p class="text-sm">LAR</p>
+        </div>
+        <!-- action button -->
+        <button class="mx-auto my-auto col-start-12 row-start-2 row-span-2 text-xl md:text-3xl text-theme-blue hover:text-theme-blue-light transition-all ease-in-out duration-200">
+          <i class="fa-regular fa-angle-right"></i>
         </button>
       </div>
       <!-- for loop end -->
