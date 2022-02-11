@@ -21,7 +21,7 @@ defmodule PoolWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
+    get "/hub", HubController, :index
     resources "/contests", ContestController
   end
 
