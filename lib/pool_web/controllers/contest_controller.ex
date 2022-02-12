@@ -14,8 +14,8 @@ defmodule PoolWeb.ContestController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"contest" => contest_params}) do
-    case Contests.create_contest(contest_params) do
+  def create(%{assigns: %{current_user: current_user}} = conn, %{"contest" => contest_params}) do
+    case Contests.create_contest(current_user, contest_params) do
       {:ok, contest} ->
         conn
         |> put_flash(:info, "Contest created successfully.")

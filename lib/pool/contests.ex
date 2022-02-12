@@ -49,9 +49,10 @@ defmodule Pool.Contests do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_contest(attrs \\ %{}) do
+  def create_contest(user, attrs \\ %{}) do
     %Contest{}
     |> Contest.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:owner_account, user)
     |> Repo.insert()
   end
 

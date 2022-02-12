@@ -26,10 +26,12 @@
             </a>
           </div>
           <!-- ownership status -->
-          <div class="md:col-span-1 col-start-5 col-span-1 my-auto mx-auto text-xs text-slate-300">
-            <div><i class="fa-solid fa-user"></i></div>
-            <p class="md:inline-block hidden">owner</p>
-          </div>
+          <%= if contest.owner_account_id == @conn.assigns.current_user.id do %>
+            <div class="md:col-span-1 col-start-5 col-span-1 my-auto mx-auto text-xs text-slate-300">
+              <div><i class="fa-solid fa-user"></i></div>
+              <p class="md:inline-block hidden">owner</p>
+            </div>
+          <% end %>
           <!-- next picks due -->
           <div class="md:col-span-2 col-start-2 col-span-2 row-span-2 justify-self-center my-auto text-sm text-theme-darkgray  text-center md:text-center">
             <h4 class="md:text-md font-medium">Next Picks Due</h4>
