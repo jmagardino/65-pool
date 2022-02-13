@@ -8,8 +8,7 @@
 import Config
 
 config :pool,
-  ecto_repos: [Pool.Repo],
-  secret_key_openweather: "90e450a4996778f8bb2bd339c6f51ef7"
+  ecto_repos: [Pool.Repo]
 
 # Configures the endpoint
 config :pool, PoolWeb.Endpoint,
@@ -17,6 +16,11 @@ config :pool, PoolWeb.Endpoint,
   render_errors: [view: PoolWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Pool.PubSub,
   live_view: [signing_salt: "YibC6b+d"]
+
+# Configures OpenWeather API
+config :pool, Pool.Weather,
+  secret_key_openweather: "90e450a4996778f8bb2bd339c6f51ef7",
+  endpoint_openweather: "http://api.openweathermap.org"
 
 # Configures the mailer
 #
