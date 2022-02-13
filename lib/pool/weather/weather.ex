@@ -3,7 +3,7 @@ defmodule Pool.Weather do
   # returns coordinates from city,[state],[country] input
   def geocode(city, state, country \\ "usa") do
     endpoint = "http://api.openweathermap.org/geo/1.0/direct"
-    key = "90e450a4996778f8bb2bd339c6f51ef7"
+    key = Application.get_env(:pool, :secret_key_openweather)
     url = "#{endpoint}?q=#{city},#{state},#{country}&appid=#{key}"
     res = HTTPoison.get!(url)
     body = Poison.decode!(res.body, keys: :atoms)
@@ -14,7 +14,7 @@ defmodule Pool.Weather do
   # returns temp and weather icon
   def get_weather() do
     endpoint = "api.openweathermap.org/data/2.5/weather"
-    key = "90e450a4996778f8bb2bd339c6f51ef7"
+    key = Application.get_env(:pool, :secret_key_openweather)
     coords = geocode("los angeles", "ca")
     lat = Enum.at(coords, 0)
     lon = Enum.at(coords, 1)

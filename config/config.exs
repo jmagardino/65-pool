@@ -8,7 +8,8 @@
 import Config
 
 config :pool,
-  ecto_repos: [Pool.Repo]
+  ecto_repos: [Pool.Repo],
+  secret_key_openweather: "90e450a4996778f8bb2bd339c6f51ef7"
 
 # Configures the endpoint
 config :pool, PoolWeb.Endpoint,
