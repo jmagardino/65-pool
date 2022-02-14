@@ -10,7 +10,8 @@ module.exports = {
     extend: {
       colors: {
         'theme-blue': '#4A88EA',
-        'theme-blue-light': '#75A4EF',
+        'theme-blue-light': '#5D9AF9',
+        'theme-blue-dark': '#3D75CE',
         'theme-gold': '#FCC885',
         'theme-darkgray': '#5B5D6B',
         'theme-gray': '#696A72'
@@ -18,6 +19,9 @@ module.exports = {
       fontFamily: {
         'body': ['"Rubik"', 'sans-serif'],
         'display': ['"Red Hat Display"', 'sans-serif']
+      },
+      screens: {
+        'nontouch': {'raw': '(hover: hover)'}
       }
     },
   },
