@@ -83,7 +83,8 @@
         <!-- game details -->
         <div x-show="open" class="grid grid-cols-9 py-4 text-xs text-center">
           <div class="col-start-5 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
-            <img class="w-1/2" src={@weather.icon} alt="weather">
+            <%# <img class="w-1/2" src={@weather.icon} alt="weather"> %>
+            <div class="text-2xl pr-4"><i class={@weather.icon}></i></div>
             <p class="pr-2"><%= @weather.temp %>&#8457;</p>
           </div>
           <div class="col-start-7 col-span-3 px-2">
