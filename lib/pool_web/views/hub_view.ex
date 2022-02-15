@@ -1,12 +1,6 @@
 defmodule PoolWeb.HubView do
   use PoolWeb, :view
 
-  alias Pool.Weather
-
-  def return_icon() do
-    %{icon: set_icon(Weather.get_weather().code)}
-  end
-
   # sets weather icon
   def set_icon(code) do
     case code do

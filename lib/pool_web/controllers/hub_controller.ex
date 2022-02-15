@@ -6,7 +6,6 @@ defmodule PoolWeb.HubController do
 
   def index(conn, _params) do
     weather_data = Weather.get_weather()
-    weather_icon = HubView.return_icon()
-    render(conn, "index.html", weather: weather_data, icon: weather_icon)
+    render(conn, "index.html", weather: weather_data)
   end
 end
