@@ -16,14 +16,14 @@
       <%= error_tag f, :password %>
     </div>
     <div class="text-center mt-8 w-48 mx-auto">
-      <%= submit "Sign Up", class: "w-full bg-theme-blue hover:bg-theme-blue-light outline outline-0 hover:outline hover:outline-1 hover:outline-theme-blue hover:shadow-md transition-all ease-in-out duration-300 text-white font-medium py-2 px-4 rounded" %>
+      <%= submit "Sign Up", class: "w-full bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark outline outline-0 nontouch:hover:outline nontouch:hover:outline-1 nontouch:hover:outline-theme-blue nontouch:hover:shadow-md transition-all ease-in-out duration-300 text-white font-medium py-2 px-4 rounded" %>
     </div>
   </.form>
   <div class="text-theme-blue mx-auto mt-12 text-center grid grid-cols-1 gap-y-4">
     <div class="mt-5">
       <p class="inline-block text-slate-700">Already have an account?</p>
       <p class= "inline-block">
-        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "hover:text-theme-blue-light transition-all ease-in-out duration-200" %>
+        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200" %>
       </p>
     </div>
   </div>
