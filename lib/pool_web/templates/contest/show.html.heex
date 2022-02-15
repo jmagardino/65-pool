@@ -7,6 +7,11 @@
     <%= @contest.name %>
   </li>
 
+  <li>
+    <strong> Registered Users </strong>
+    <%= inspect(Enum.map(@contest.users, fn user -> user.email end)) %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |

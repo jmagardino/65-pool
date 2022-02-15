@@ -22,7 +22,11 @@ defmodule PoolWeb.Router do
 
     get "/", PageController, :index
     get "/hub", HubController, :index
+
+    post "/contests/:id/join", ContestController, :join
     resources "/contests", ContestController
+
+    get "/my_contests", MyContestController, :index
   end
 
   # Other scopes may use custom stacks.

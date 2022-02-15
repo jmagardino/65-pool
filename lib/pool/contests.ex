@@ -21,6 +21,24 @@ defmodule Pool.Contests do
     Repo.all(Contest)
   end
 
+  def joinable_contests(user_id) do
+    query = from c in Contest, where: c.owner_account_id != ^user_id
+
+    Repo.all(query)
+  end
+
+  def owned_contests(user_id) do
+    query = from c in Contest, where: c.owner_account_id == ^user_id
+
+    Repo.all(query)
+  end
+
+  def joined_contests(user_id) do
+    query = from c in Contest, join: u in assoc(c, :users), preload: [users: u], where: u.id == ^user_id
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single contest.
 
@@ -35,7 +53,7 @@ defmodule Pool.Contests do
       ** (Ecto.NoResultsError)
 
   """
-  def get_contest!(id), do: Repo.get!(Contest, id)
+  def get_contest!(id), do: Repo.get!(Contest, id) |> Repo.preload(:users)
 
   @doc """
   Creates a contest.
@@ -54,6 +72,13 @@ defmodule Pool.Contests do
     |> Contest.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:owner_account, user)
     |> Repo.insert()
+  end
+
+  def add_user!(%Contest{} = contest, user) do
+    contest
+    |> Repo.preload(:users)
+    |> Contest.add_user_changeset(user)
+    |> Repo.update!()
   end
 
   @doc """

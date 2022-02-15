@@ -5,7 +5,8 @@ defmodule PoolWeb.ContestController do
   alias Pool.Contests.Contest
 
   def index(conn, _params) do
-    contests = Contests.list_contests()
+    # TODO: Don't list contests owned by current user
+    contests = Contests.joinable_contests(conn.assigns.current_user.id)
     render(conn, "index.html", contests: contests)
   end
 
@@ -58,5 +59,15 @@ defmodule PoolWeb.ContestController do
     conn
     |> put_flash(:info, "Contest deleted successfully.")
     |> redirect(to: Routes.contest_path(conn, :index))
+  end
+
+  def join(conn, %{"id" => contest_id}) do
+    contest = Contests.get_contest!(contest_id)
+
+    contest = Contests.add_user!(contest, conn.assigns.current_user)
+
+    conn
+    |> put_flash(:success, "Joined contest successfully!")
+    |> redirect(to: Routes.contest_path(conn, :show, contest))
   end
 end
