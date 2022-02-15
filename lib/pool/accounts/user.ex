@@ -10,6 +10,8 @@ defmodule Pool.Accounts.User do
 
     has_many :created_contests, Pool.Contests.Contest, foreign_key: :owner_account_id
 
+    many_to_many :contests, Pool.Contests.Contest, join_through: "contests_users"
+
     timestamps()
   end
 
