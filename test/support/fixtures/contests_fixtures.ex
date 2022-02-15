@@ -17,4 +17,19 @@ defmodule Pool.ContestsFixtures do
 
     contest
   end
+
+  @doc """
+  Generate a team.
+  """
+  def team_fixture(attrs \\ %{}) do
+    {:ok, team} =
+      attrs
+      |> Enum.into(%{
+        logo: "some logo",
+        name: "some name"
+      })
+      |> Pool.Contests.create_team()
+
+    team
+  end
 end

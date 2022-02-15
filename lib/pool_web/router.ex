@@ -27,6 +27,8 @@ defmodule PoolWeb.Router do
     resources "/contests", ContestController
 
     get "/my_contests", MyContestController, :index
+
+    resources "/teams", TeamController
   end
 
   # Other scopes may use custom stacks.
