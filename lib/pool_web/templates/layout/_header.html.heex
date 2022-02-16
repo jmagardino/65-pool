@@ -30,7 +30,7 @@
             <!-- uncomment conditional nav links when done testing -->
             <%# <%= if @current_user do %>
               <a href="/hub" class="flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Dashboard</a>
-              <%= link "My Pools", to: Routes.my_contest_path(@conn, :index), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
+              <%= link "My Pools", to: Routes.contest_path(@conn, :my_contests), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
               <%= link "Find a Pool", to: Routes.contest_path(@conn, :index), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
               <a href="#" class="flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Create a Pool</a>
               <%# <% else %>
