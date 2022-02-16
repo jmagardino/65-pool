@@ -10,6 +10,13 @@ defmodule PoolWeb.ContestController do
     render(conn, "index.html", contests: contests)
   end
 
+  def my_contests(conn, _params) do
+    # TODO: Only fetch contests for current signed in account
+    owned_contests = Contests.owned_contests(conn.assigns.current_user.id)
+    joined_contests = Contests.joined_contests(conn.assigns.current_user.id)
+    render(conn, "my_contests.html", contests: owned_contests ++ joined_contests)
+  end
+
   def new(conn, _params) do
     changeset = Contests.change_contest(%Contest{})
     render(conn, "new.html", changeset: changeset)
