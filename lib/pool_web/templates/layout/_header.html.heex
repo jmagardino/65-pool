@@ -27,48 +27,51 @@
         </div>
         <div class="hidden md:block md:ml-6">
           <div class="flex flex-nowrap space-x-4">
-            <!-- uncomment conditional nav links when done testing -->
-            <%# <%= if @current_user do %>
-              <a href="/hub" class="flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Dashboard</a>
-              <%= link "My Pools", to: Routes.contest_path(@conn, :my_contests), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
-              <%= link "Find a Pool", to: Routes.contest_path(@conn, :index), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
-              <%= link "Create a Pool", to: Routes.contest_path(@conn, :new), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
-              <%# <% else %>
-              <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">About</a> %>
-              <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Support</a> %>
-              <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">The Team</a> %>
-              <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Contact</a> %>
-              <%# <% end %>
-            </div>
+            <%= if @current_user do %>
+              <a href="/hub" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Dashboard</a>
+              <%= link "My Pools", to: Routes.contest_path(@conn, :my_contests), class: "flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
+              <%= link "Find a Pool", to: Routes.contest_path(@conn, :index), class: "flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
+              <%= link "Create a Pool", to: Routes.contest_path(@conn, :new), class: "flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
+            <% else %>
+              <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">About</a>
+              <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Support</a>
+              <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">The Team</a>
+              <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Contact</a>
+            <% end %>
           </div>
         </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
-          <%= render "_user_menu.html", assigns %>
-        </div>
+      </div>
+      <div class="hidden absolute inset-y-0 right-0 md:flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+        <%= render "_user_menu.html", assigns %>
       </div>
     </div>
-    <!-- mobile menu -->
-    <div id="mobile-menu" 
+  </div>
+  <!-- mobile menu -->
+  <div id="mobile-menu" 
       x-show="isMenuOpen" x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="opacity-0 transform scale-x-0 translate-x-1/2" x-transition:enter-end="opacity-100 transform scale-x-100 translate-x-0" x-transition:leave="transition ease-in-out duration-300" x-transition:leave-start="opacity-100 transform scale-x-100 translate-x-0" x-transition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2" 
-      class="hidden fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="relative top-16 h-full bg-gray-100 bg-opacity-70 transition-opacity" aria-hidden="true"></div>
-        <div class="fixed inset-y-1 right-0 pl-10 max-w-full flex">
-          <div class="relative w-screen max-w-md">
-            <div class="relative top-16 h-full flex flex-col py-6 bg-white bg-opacity-90 shadow-xl overflow-y-scroll">
-              <div class="px-4 sm:px-6">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title"></h2>
-              </div>
-              <div class="mt-6 relative flex-1 px-4 sm:px-6">
-                <!-- menu items -->
-                <div class="absolute inset-0 px-4 sm:px-6">
-                  <div class="h-full" aria-hidden="true">
-                    <div class="px-2 pt-2 pb-3 space-y-1 flex flex-col items-end text-xl">
-                      <a href="/hub" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200" aria-current="page">Dashboard</a>
-                      <%= link "My Pools", to: Routes.contest_path(@conn, :index), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200" %>
-                      <a href="#" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200">Find a Pool</a>
-                      <a href="#" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200">Create a Pool</a>
-                    </div>
+      class="hidden md:hidden fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="relative top-16 h-full bg-gray-100 bg-opacity-70 transition-opacity" aria-hidden="true"></div>
+      <div class="fixed inset-y-1 right-0 pl-10 max-w-full flex">
+        <div class="relative w-screen max-w-md">
+          <div class="relative top-16 h-full flex flex-col py-6 bg-white bg-opacity-90 shadow-xl overflow-y-scroll">
+            <div class="px-4 sm:px-6">
+              <h2 class="text-lg font-medium text-gray-900" id="slide-over-title"></h2>
+            </div>
+            <div class="mt-6 relative flex-1 px-4 sm:px-6">
+              <!-- menu items -->
+              <div class="absolute inset-0 px-4 sm:px-6">
+                <div class="h-full" aria-hidden="true">
+                  <div class="px-2 pt-2 pb-3 space-y-1 flex flex-col items-end text-xl">
+                    <a href="/hub" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200" aria-current="page">Dashboard</a>
+                    <%= link "My Pools", to: Routes.contest_path(@conn, :index), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200" %>
+                    <a href="#" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200">Find a Pool</a>
+                    <a href="#" class="text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark block px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200">Create a Pool</a>
+                    <%= if @current_user do %>
+                      <div class="w-1/3 pt-8">
+                        <%= render "_user_menu.html", assigns %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -77,14 +80,15 @@
         </div>
       </div>
     </div>
-    <script>
-      const hamburger = document.querySelector("#hamburger");
-      const mobileMenu = document.querySelector("#mobile-menu");
-      const menuClose = document.querySelector("#menu-close");
-      hamburger.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-      });
-    </script>
-  </nav>
-  <div class="h-16">
   </div>
+  <script>
+    const hamburger = document.querySelector("#hamburger");
+    const mobileMenu = document.querySelector("#mobile-menu");
+    const menuClose = document.querySelector("#menu-close");
+    hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</nav>
+<div class="h-16">
+</div>

@@ -1,20 +1,20 @@
-<ul>
+<div class="">
   <%= if @current_user do %>
     <!-- Profile dropdown -->
-    <div class="ml-3 relative">
-    <!-- notification section -->
-      <div>
-        <button type="button" class="p-1 rounded-full text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
-          <i class="fa-regular fa-envelope h-6 w-6 mx-4"></i>
+    <div class="ml-3 relative flex justify-evenly items-center gap-x-4">
+      <!-- notification section -->
+      <div class="hidden md:flex gap-x-4 items-center">
+        <button type="button" class="p-1 text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
+          <i class="fa-regular fa-envelope h-6 w-6 mx-auto"></i>
         </button>
-        <button type="button" class="p-1 rounded-full text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
-          <i class="fa-regular fa-bell h-6 w-6 mx-4"></i>
+        <button type="button" class="p-1 text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
+          <i class="fa-regular fa-bell h-6 w-6 mx-auto"></i>
         </button>
       </div>
       <!-- user menu icon -->
-      <div>
-        <button type="button" id="profile-btn" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-          <img class="h-8 w-8 rounded-full" src="https://www.placecage.com/100/100" alt="">
+      <div class="md:flex md:items-center">
+        <button type="button" id="profile-btn" class="bg-gray-800 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+          <img class="md:w-10 w-12 h-auto rounded-full" src="https://www.placecage.com/100/100" alt="">
         </button>
       </div>
       <!-- user dropdown menu -->
@@ -29,4 +29,4 @@
       <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200" %></li>
     </div>
   <% end %>
-</ul>
+</div>
