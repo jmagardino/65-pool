@@ -32,7 +32,7 @@
               <a href="/hub" class="flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Dashboard</a>
               <%= link "My Pools", to: Routes.my_contest_path(@conn, :index), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
               <%= link "Find a Pool", to: Routes.contest_path(@conn, :index), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
-              <a href="#" class="flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Create a Pool</a>
+              <%= link "Create a Pool", to: Routes.contest_path(@conn, :new), class: "flex-none text-theme-blue hover:text-theme-blue-light px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200"%>
               <%# <% else %>
               <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">About</a> %>
               <%# <a href="#" class="flex-none text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200">Support</a> %>
