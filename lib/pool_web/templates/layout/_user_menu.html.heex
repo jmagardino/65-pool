@@ -1,6 +1,6 @@
 <div class="">
   <%= if @current_user do %>
-    <!-- Profile dropdown -->
+    <!-- User action section -->
     <div class="ml-3 relative flex justify-evenly items-center gap-x-4">
       <!-- notification section -->
       <div class="hidden md:flex gap-x-4 items-center">
@@ -11,22 +11,29 @@
           <i class="fa-regular fa-bell h-6 w-6 mx-auto"></i>
         </button>
       </div>
-      <!-- user menu icon -->
+      <!-- user menu button -->
       <div class="md:flex md:items-center">
         <button type="button" id="profile-btn" class="bg-gray-800 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
           <img class="md:w-10 w-12 h-auto rounded-full" src="https://www.placecage.com/100/100" alt="">
         </button>
       </div>
       <!-- user dropdown menu -->
-      <div id="profile-menu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-        <%= link "Your Profile", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm text-theme-blue nontouch:hover:text-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark"%>
+      <div id="profile-menu" class="hidden text-right origin-top-right absolute right-0 mt-40 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+        <%= link "My Profile", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm text-theme-blue nontouch:hover:text-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark"%>
         <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-theme-blue nontouch:hover:text-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark" %>
       </div>
     </div>
   <% else %>
-    <div class="hidden md:flex md:flex-row">
-      <li><%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200" %></li>
-      <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md text-sm font-medium transition-all ease-in-out duration-200" %></li>
+    <div class="flex md:flex-row flex-col items-end text-xl md:text-sm">
+      <%= link "Sign Up", to: Routes.user_registration_path(@conn, :new), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md font-semibold transition-all ease-in-out duration-200" %>
+      <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark px-3 py-2 rounded-md font-medium transition-all ease-in-out duration-200" %>
     </div>
   <% end %>
 </div>
+<script>
+  const btnProfile = document.querySelector("#profile-btn");
+  const menuProfile = document.querySelector("#profile-menu");
+  btnProfile.addEventListener("click", () => {
+    menuProfile.classList.toggle("hidden");
+  });
+</script>
