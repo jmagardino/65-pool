@@ -8,12 +8,19 @@ defmodule PoolWeb.ErrorHelpers do
   @doc """
   Generates tag for inlined form input errors.
   """
+  # def error_tag(form, field) do
+  #   Enum.map(Keyword.get_values(form.errors, field), fn error ->
+  #     content_tag(:span, translate_error(error),
+  #       class: "invalid-feedback",
+  #       phx_feedback_for: input_name(form, field)
+  #     )
+  #   end)
+  # end
+
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error),
-        class: "invalid-feedback",
-        phx_feedback_for: input_name(form, field)
-      )
+      field = field |> Atom.to_string() |> String.capitalize()
+      content_tag(:span, "#{field} #{translate_error(error)}", class: "block mt-1 text-sm text-red-700")
     end)
   end
 
