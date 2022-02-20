@@ -7,6 +7,8 @@ defmodule Pool.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :first_name, :string
+    field :last_name, :string
 
     has_many :created_contests, Pool.Contests.Contest, foreign_key: :owner_account_id
 
@@ -34,7 +36,7 @@ defmodule Pool.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :first_name, :last_name])
     |> validate_email()
     |> validate_password(opts)
   end
