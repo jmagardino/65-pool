@@ -3,11 +3,12 @@ defmodule PoolWeb.UserSettingsController do
 
   alias Pool.Accounts
   alias PoolWeb.UserAuth
+  use PoolWeb.CurrentUser
 
   plug :assign_email_and_password_changesets
 
-  def edit(conn, _params) do
-    render(conn, "edit.html")
+  def edit(conn, _params, current_user) do
+    render(conn, "edit.html", current_user: current_user)
   end
 
   def update(conn, %{"action" => "update_email"} = params) do
