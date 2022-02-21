@@ -3,7 +3,7 @@
   <h1 class="text-theme-blue font-semibold">My Profile</h1>
 </div>
 <!-- main container -->
-<div class="clear-both mt-8 md:mt-24 mx-4 md:mx-auto md:max-w-xl md:px-16 md:py-12 border border-slate-200 rounded-lg bg-white shadow-md px-0 pt-0 pb-10 mb-4">
+<div class="clear-both mt-8 md:mt-24 mx-4 md:mx-auto md:max-w-xl md:px-16 md:py-12 border border-slate-200 rounded-lg bg-white shadow-md px-0 pt-0 pb-10 mb-12">
   <!-- email section -->
   <div class="mx-auto mb-8 grid grid-cols-1 auto-rows-auto w-full h-fit max-h-min min-h-full text-center border-slate-200 rounded-xl divide-y divide-inherit bg-white">
     <h3 class="text-left font-medium p-4">Update email</h3>
@@ -27,7 +27,7 @@
             <%= error_tag f, :current_password %>
           </div>
           <div class="text-center text-sm my-2 w-36 mx-auto">
-            <%= submit "Update", class: "w-full h-12 px-2 bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark transition-all ease-in-out duration-300 text-white font-medium py-2 px-4 rounded" %>
+            <%= submit "Update", class: "w-full h-12 px-2 py-2 bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark transition-all ease-in-out duration-300 text-white font-medium rounded" %>
           </div>
         </div>
       </.form>
@@ -36,7 +36,7 @@
   <!-- password section -->
   <div class="mx-auto grid grid-cols-1 auto-rows-auto w-full h-fit max-h-min min-h-full text-center border-slate-200 rounded-xl divide-y divide-inherit bg-white">
     <h3 class="text-left font-medium p-4">Change password</h3>
-    <div class="p-4">
+    <div class="p-4 pb-0">
       <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
         <%= if @password_changeset.action do %>
           <div class="alert alert-danger">
@@ -60,8 +60,8 @@
             <%= password_input f, :password_confirmation, required: true %>
             <%= error_tag f, :password_confirmation %>
           </div>
-          <div class="text-center text-sm my-2 w-36 mx-auto">
-            <%= submit "Change password", class: "w-full h-12 px-2 bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark transition-all ease-in-out duration-300 text-white font-medium py-2 px-4 rounded" %>
+          <div class="text-center text-sm my-2 mb-0 w-36 mx-auto">
+            <%= submit "Change password", class: "w-full h-12 px-2 py-2 bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark transition-all ease-in-out duration-300 text-white font-medium rounded" %>
           </div>
         </div>
       </.form>
