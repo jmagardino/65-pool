@@ -16,7 +16,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
-  <body ontouchstart class="font-body">
+  <body ontouchstart class="font-body min-h-screen flex flex-col">
     <header>
       <%= render "_header.html", assigns %>
     </header>
