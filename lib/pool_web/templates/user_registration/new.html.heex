@@ -5,12 +5,12 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <div class="flex gap-x-2">
-      <div class="mb-4">
+    <div class="sm:flex sm:justify-evenly gap-x-2">
+      <div class="mb-4 sm:flex-grow">
         <%= label f, :first, class: "block text-grey-darker text-sm font-bold mb-2" %>
         <%= text_input f, :first_name, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
       </div>
-      <div class="mb-4">
+      <div class="mb-4 sm:flex-grow">
         <%= label f, :last, class: "block text-grey-darker text-sm font-bold mb-2" %>
         <%= text_input f, :last_name, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"%>
       </div>
