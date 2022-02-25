@@ -1,0 +1,33 @@
+<h1>Show Game</h1>
+
+<ul>
+
+  <li>
+    <strong>Start:</strong>
+    <%= @game.start %>
+  </li>
+
+  <li>
+    <strong>Spread:</strong>
+    <%= @game.spread %>
+  </li>
+
+  <li>
+    <strong>Over under:</strong>
+    <%= @game.over_under %>
+  </li>
+
+  <li>
+    <strong>Home Team</strong>
+    <%= @game.home_team.name %>
+  </li>
+
+  <li>
+    <strong>Away Team</strong>
+    <%= @game.away_team.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.game_path(@conn, :edit, @game) %></span> |
+<span><%= link "Back", to: Routes.game_path(@conn, :index) %></span>

@@ -6,6 +6,9 @@ defmodule Pool.Games.Team do
     field :logo, :string
     field :name, :string
 
+    has_many :away_games, Pool.Games.Game, foreign_key: :home_team_id
+    has_many :home_games, Pool.Games.Game, foreign_key: :away_team_id
+
     timestamps()
   end
 

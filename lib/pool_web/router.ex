@@ -28,6 +28,7 @@ defmodule PoolWeb.Router do
     resources "/contests", ContestController
 
     resources "/teams", TeamController
+    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.
