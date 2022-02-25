@@ -147,7 +147,7 @@ defmodule Pool.Games do
       {:error, %Ecto.Changeset{}}
 
   """
-  #TODO: Make this not two calls and not so terribly janky
+  # TODO: Make this not two calls and not so terribly janky
   def create_game(attrs \\ %{}, home_team, away_team) do
     {:ok, game} =
       %Game{}

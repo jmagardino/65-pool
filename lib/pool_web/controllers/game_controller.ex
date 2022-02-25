@@ -15,7 +15,9 @@ defmodule PoolWeb.GameController do
     render(conn, "new.html", changeset: changeset, teams: teams)
   end
 
-  def create(conn, %{"game" => %{"home_team_id" => home_team_id, "away_team_id" => away_team_id} = game_params}) do
+  def create(conn, %{
+        "game" => %{"home_team_id" => home_team_id, "away_team_id" => away_team_id} = game_params
+      }) do
     home_team = Pool.Games.get_team!(home_team_id)
     away_team = Pool.Games.get_team!(away_team_id)
 

@@ -34,7 +34,8 @@ defmodule Pool.Contests do
   end
 
   def joined_contests(user_id) do
-    query = from c in Contest, join: u in assoc(c, :users), preload: [users: u], where: u.id == ^user_id
+    query =
+      from c in Contest, join: u in assoc(c, :users), preload: [users: u], where: u.id == ^user_id
 
     Repo.all(query)
   end
