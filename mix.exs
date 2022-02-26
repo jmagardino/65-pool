@@ -52,7 +52,8 @@ defmodule Pool.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
       {:httpoison, "~> 1.7"},
-      {:poison, "~> 5.0"}
+      {:poison, "~> 5.0"},
+      {:faker, "~> 0.17", only: [:test, :dev]}
     ]
   end
 
