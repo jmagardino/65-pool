@@ -1,0 +1,5 @@
+<h1>Edit Pick</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.pick_path(@conn, :update, @pick)) %>
+
+<span><%= link "Back", to: Routes.pick_path(@conn, :index) %></span>

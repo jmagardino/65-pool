@@ -27,6 +27,8 @@ defmodule PoolWeb.Router do
     get "/contests/my_contests", ContestController, :my_contests
     resources "/contests", ContestController
 
+    resources "/picks", PickController
+
     resources "/teams", TeamController
     resources "/games", GameController
   end
