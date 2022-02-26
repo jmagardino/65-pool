@@ -23,6 +23,12 @@ Repo.delete_all(Contests.Contest)
 Repo.delete_all(Games.Team)
 Repo.delete_all(Games.Game)
 
+# -- SETUP -- #
+# excludes 2 primary users assigned statically below
+user_count = 10
+contest_count = 10
+team_count = 10
+
 # -- GENERATE USER ACCOUNTS -- #
 Accounts.register_user(%{
   email: "joe@65pool.com",
@@ -38,7 +44,7 @@ Accounts.register_user(%{
   last_name: "Cobert"
 })
 
-for _ <- 1..10 do
+for _ <- 1..user_count do
   Accounts.register_user(%{
     email: Internet.email(),
     password: Faker.String.base64(12),
@@ -48,7 +54,7 @@ for _ <- 1..10 do
 end
 
 # -- GENERATE CONTESTS -- #
-for i <- 1..10 do
+for i <- 1..contest_count do
   Repo.insert!(%Contests.Contest{
     id: i,
     name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
@@ -59,7 +65,7 @@ for i <- 1..10 do
 end
 
 # -- GENERATE TEAMS -- #
-for i <- 1..10 do
+for i <- 1..team_count do
   Repo.insert!(%Games.Team{
     id: i,
     logo: "https://picsum.photos/seed/picsum/200/200",
@@ -70,13 +76,14 @@ for i <- 1..10 do
 end
 
 # -- GENERATE GAMES -- #
-for i <- 1..5 do
+for i <- 1..(div(team_count, 2)) do
   home = i
-  away = 11 - home
+  away = team_count + 1 - home
+
   Repo.insert!(%Games.Game{
     id: i,
-    over_under: Enum.random(60..130)/2,
-    spread: Enum.random(1..30)/2,
+    over_under: Enum.random(60..130) / 2,
+    spread: Enum.random(1..30) / 2,
     start: DateTime.truncate(Faker.DateTime.forward(14), :second),
     home_team_id: home,
     away_team_id: away,
