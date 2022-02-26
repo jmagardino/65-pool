@@ -75,8 +75,8 @@ for i <- 1..5 do
   away = 11 - home
   Repo.insert!(%Games.Game{
     id: i,
-    over_under: Enum.random(30..65),
-    spread: :rand.uniform(15),
+    over_under: Enum.random(60..130)/2,
+    spread: Enum.random(1..30)/2,
     start: DateTime.truncate(Faker.DateTime.forward(14), :second),
     home_team_id: home,
     away_team_id: away,
