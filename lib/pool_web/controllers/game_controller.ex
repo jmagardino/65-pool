@@ -42,7 +42,8 @@ defmodule PoolWeb.GameController do
   def edit(conn, %{"id" => id}) do
     game = Games.get_game!(id)
     changeset = Games.change_game(game)
-    render(conn, "edit.html", game: game, changeset: changeset)
+    teams = Games.list_teams()
+    render(conn, "edit.html", game: game, teams: teams, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "game" => game_params}) do
