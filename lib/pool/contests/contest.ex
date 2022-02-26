@@ -30,7 +30,7 @@ defmodule Pool.Contests.Contest do
   def add_user_changeset(contest, user) do
     contest
     |> Ecto.Changeset.change(%{})
-    #TODO: Change this to just insert the ids in the join table, not worry about
+    # TODO: Change this to just insert the ids in the join table, not worry about
     |> Ecto.Changeset.put_assoc(:users, [user | contest.users])
   end
 end

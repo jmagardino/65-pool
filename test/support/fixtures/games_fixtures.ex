@@ -18,4 +18,20 @@ defmodule Pool.GamesFixtures do
 
     team
   end
+
+  @doc """
+  Generate a game.
+  """
+  def game_fixture(attrs \\ %{}) do
+    {:ok, game} =
+      attrs
+      |> Enum.into(%{
+        over_under: "120.5",
+        spread: "120.5",
+        start: ~U[2022-02-15 18:29:00Z]
+      })
+      |> Pool.Games.create_game()
+
+    game
+  end
 end
