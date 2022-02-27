@@ -29,7 +29,7 @@ defmodule PoolWeb.ContestController do
 
         games = Enum.map(game_ids, fn id -> Pool.Games.get_game!(id) end)
 
-        contest_with_games = Contests.add_games_to_contest(contest, games)
+        contest_with_games = Contests.set_games_for_contest(contest, games)
 
         conn
         |> put_flash(:info, "Contest created successfully.")
@@ -52,14 +52,18 @@ defmodule PoolWeb.ContestController do
     render(conn, "edit.html", contest: contest, changeset: changeset, games: games)
   end
 
-  def update(conn, %{"id" => id, "contest" => contest_params}) do
+  def update(conn, %{"id" => id, "contest" => %{"game_ids" => game_ids} = contest_params}) do
     contest = Contests.get_contest!(id)
 
     case Contests.update_contest(contest, contest_params) do
       {:ok, contest} ->
+        games = Enum.map(game_ids, fn id -> Pool.Games.get_game!(id) end)
+
+        contest_with_games = Contests.set_games_for_contest(contest, games)
+
         conn
         |> put_flash(:info, "Contest updated successfully.")
-        |> redirect(to: Routes.contest_path(conn, :show, contest))
+        |> redirect(to: Routes.contest_path(conn, :show, contest_with_games))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", contest: contest, changeset: changeset)

@@ -82,10 +82,10 @@ defmodule Pool.Contests do
     |> Repo.update!()
   end
 
-  def add_games_to_contest(%Contest{} = contest, [_ | _] = games) do
+  def set_games_for_contest(%Contest{} = contest, [_ | _] = games) do
     contest
     |> Repo.preload(games: [:home_team, :away_team])
-    |> Contest.add_games_changeset(games)
+    |> Contest.set_games_changeset(games)
     |> Repo.update!()
   end
 
