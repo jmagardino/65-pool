@@ -23,7 +23,7 @@ defmodule PoolWeb.ContestController do
     render(conn, "new.html", changeset: changeset, games: games)
   end
 
-  def create(%{assigns: %{current_user: current_user}} = conn, %{"contest" => %{"games" => game_ids} = contest_params}) do
+  def create(%{assigns: %{current_user: current_user}} = conn, %{"contest" => %{"game_ids" => game_ids} = contest_params}) do
     case Contests.create_contest(current_user, contest_params) do
       {:ok, contest} ->
 
@@ -46,9 +46,10 @@ defmodule PoolWeb.ContestController do
   end
 
   def edit(conn, %{"id" => id}) do
+    games = Pool.Games.list_games()
     contest = Contests.get_contest!(id)
     changeset = Contests.change_contest(contest)
-    render(conn, "edit.html", games: [], contest: contest, changeset: changeset)
+    render(conn, "edit.html", contest: contest, changeset: changeset, games: games)
   end
 
   def update(conn, %{"id" => id, "contest" => contest_params}) do

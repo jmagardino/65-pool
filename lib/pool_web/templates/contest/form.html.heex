@@ -11,8 +11,9 @@
         <%= text_input f, :name, placeholder: "test", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         <%= error_tag f, :name %>
 
+        <% IO.inspect(@games) %>
         <%= label f, :games %>
-        <%= multiple_select f, :games, Enum.map(@games, & {"#{&1.home_team.name} vs #{&1.away_team.name}", Integer.to_string(&1.id)}), selected: [] %>
+        <%= multiple_select f, :game_ids, Enum.map(@games, & {"#{&1.home_team.name} vs #{&1.away_team.name}", Integer.to_string(&1.id)}) %>
         <%= error_tag f, :games %>
       </div>
     </div>

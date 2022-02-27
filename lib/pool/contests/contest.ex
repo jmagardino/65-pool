@@ -35,9 +35,9 @@ defmodule Pool.Contests.Contest do
     |> Ecto.Changeset.put_assoc(:users, [user | contest.users])
   end
 
-  def add_games_changeset(contest, [games]) do
+  def add_games_changeset(contest, [_ | _] = games) do
     contest
     |> Ecto.Changeset.change(%{})
-    |> Ecto.Changeset.put_assoc(:games, contest.games ++ [games])
+    |> Ecto.Changeset.put_assoc(:games, contest.games ++ games)
   end
 end
