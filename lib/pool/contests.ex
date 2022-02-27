@@ -54,7 +54,7 @@ defmodule Pool.Contests do
       ** (Ecto.NoResultsError)
 
   """
-  def get_contest!(id), do: Repo.get!(Contest, id) |> Repo.preload(:users)
+  def get_contest!(id), do: Repo.get!(Contest, id) |> Repo.preload([:users, games: [:home_team, :away_team]])
 
   @doc """
   Creates a contest.
@@ -79,6 +79,13 @@ defmodule Pool.Contests do
     contest
     |> Repo.preload(:users)
     |> Contest.add_user_changeset(user)
+    |> Repo.update!()
+  end
+
+  def add_games_to_contest(%Contest{} = contest, [_ | _] = games) do
+    contest
+    |> Repo.preload(games: [:home_team, :away_team])
+    |> Contest.add_games_changeset(games)
     |> Repo.update!()
   end
 
@@ -126,6 +133,8 @@ defmodule Pool.Contests do
 
   """
   def change_contest(%Contest{} = contest, attrs \\ %{}) do
-    Contest.changeset(contest, attrs)
+    contest
+    |> Pool.Repo.preload(:games)
+    |> Contest.changeset(attrs)
   end
 end

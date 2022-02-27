@@ -19,15 +19,21 @@ defmodule PoolWeb.ContestController do
 
   def new(conn, _params) do
     changeset = Contests.change_contest(%Contest{})
-    render(conn, "new.html", changeset: changeset)
+    games = Pool.Games.list_games()
+    render(conn, "new.html", changeset: changeset, games: games)
   end
 
-  def create(%{assigns: %{current_user: current_user}} = conn, %{"contest" => contest_params}) do
+  def create(%{assigns: %{current_user: current_user}} = conn, %{"contest" => %{"games" => game_ids} = contest_params}) do
     case Contests.create_contest(current_user, contest_params) do
       {:ok, contest} ->
+
+        games = Enum.map(game_ids, fn id -> Pool.Games.get_game!(id) end)
+
+        contest_with_games = Contests.add_games_to_contest(contest, games)
+
         conn
         |> put_flash(:info, "Contest created successfully.")
-        |> redirect(to: Routes.contest_path(conn, :show, contest))
+        |> redirect(to: Routes.contest_path(conn, :show, contest_with_games))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -42,7 +48,7 @@ defmodule PoolWeb.ContestController do
   def edit(conn, %{"id" => id}) do
     contest = Contests.get_contest!(id)
     changeset = Contests.change_contest(contest)
-    render(conn, "edit.html", contest: contest, changeset: changeset)
+    render(conn, "edit.html", games: [], contest: contest, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "contest" => contest_params}) do
