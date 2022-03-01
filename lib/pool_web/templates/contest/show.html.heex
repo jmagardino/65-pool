@@ -12,6 +12,12 @@
     <%= inspect(Enum.map(@contest.users, fn user -> user.email end)) %>
   </li>
 
+  <li>
+    <strong> Games </strong>
+    <% IO.inspect(@contest) %>
+    <%= inspect(Enum.map(@contest.games, fn game -> "#{game.home_team.name} vs #{game.away_team.name}" end)) %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
