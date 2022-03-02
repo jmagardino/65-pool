@@ -14,9 +14,7 @@ alias Pool.Repo
 alias Pool.Accounts
 alias Pool.Contests
 alias Pool.Games
-alias Faker.Person
-alias Faker.Internet
-alias Faker.Team
+alias Pool.SportsData
 
 Repo.delete_all(Accounts.User)
 Repo.delete_all(Contests.Contest)
@@ -24,34 +22,29 @@ Repo.delete_all(Games.Team)
 Repo.delete_all(Games.Game)
 
 # -- SETUP -- #
-# excludes 2 primary users assigned statically below
-user_count = 10
 contest_count = 10
-team_count = 10
 
 # -- GENERATE USER ACCOUNTS -- #
 Accounts.register_user(%{
   email: "joe@65pool.com",
-  password: "123456789012",
+  password: "000000000000",
   first_name: "joe",
   last_name: "magardino"
 })
 
 Accounts.register_user(%{
   email: "josh@65pool.com",
-  password: "123456789012",
+  password: "000000000000",
   first_name: "Josh",
   last_name: "Cobert"
 })
 
-for _ <- 1..user_count do
-  Accounts.register_user(%{
-    email: Internet.email(),
-    password: Faker.String.base64(12),
-    first_name: Person.first_name(),
-    last_name: Person.last_name()
-  })
-end
+Accounts.register_user(%{
+  email: "kelly@brockington.com",
+  password: "000000000000",
+  first_name: "Kelly",
+  last_name: "Brockington"
+})
 
 # -- GENERATE CONTESTS -- #
 for i <- 1..contest_count do
@@ -60,25 +53,27 @@ for i <- 1..contest_count do
     name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
     inserted_at: ~N[2022-02-26 17:06:16],
     updated_at: ~N[2022-02-26 17:06:16],
-    owner_account_id: :rand.uniform(10)
+    owner_account_id: :rand.uniform(3)
   })
 end
 
 # -- GENERATE TEAMS -- #
-for i <- 1..team_count do
+teams_data = %{name: SportsData.get_all_teams("FullName"), logo: SportsData.get_all_teams("WikipediaLogoUrl")}
+
+for i <- 1..32 do
   Repo.insert!(%Games.Team{
     id: i,
-    logo: "https://picsum.photos/seed/picsum/200/200",
-    name: Team.name(),
+    logo: Enum.at(teams_data.logo, i-1),
+    name: Enum.at(teams_data.name, i-1),
     inserted_at: ~N[2022-02-26 17:06:16],
     updated_at: ~N[2022-02-26 17:06:16]
   })
 end
 
 # -- GENERATE GAMES -- #
-for i <- 1..(div(team_count, 2)) do
+for i <- 1..(div(32, 2)) do
   home = i
-  away = team_count + 1 - home
+  away = 33 - home
 
   Repo.insert!(%Games.Game{
     id: i,
