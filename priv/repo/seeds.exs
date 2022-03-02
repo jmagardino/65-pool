@@ -47,15 +47,15 @@ Accounts.register_user(%{
 })
 
 # -- GENERATE CONTESTS -- #
-for i <- 1..contest_count do
-  Repo.insert!(%Contests.Contest{
-    id: i,
-    name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16],
-    owner_account_id: :rand.uniform(3)
-  })
-end
+# for i <- 1..contest_count do
+#   Repo.insert!(%Contests.Contest{
+#     id: i,
+#     name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
+#     inserted_at: ~N[2022-02-26 17:06:16],
+#     updated_at: ~N[2022-02-26 17:06:16],
+#     owner_account_id: :rand.uniform(3)
+#   })
+# end
 
 # -- GENERATE TEAMS -- #
 teams_data = %{name: SportsData.get_all_teams("FullName"), logo: SportsData.get_all_teams("WikipediaLogoUrl")}
