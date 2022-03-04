@@ -13,10 +13,10 @@
         <div class="grid justify-items-center md:grid-cols-12 md:grid-rows-1 grid-rows-2 md:gap-x-1 gap-y-0 md:p-4 pl-0 pr-2 pb-2 pt-1 min-h-max"
                 style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
           <!-- avatar -->
-          <div class="my-auto row-start-2 row-span-2 md:row-span-2 w-12 lg:w-16">
+          <div class="my-auto row-start-2 row-span-2 md:row-span-2">
             <%= link to: Routes.contest_path(@conn, :show, contest) do %>
-              <img class="md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
-                        src="https://picsum.photos/200" alt="">
+              <img class="object-cover w-12 h-12 md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
+                        src={contest.avatar} alt="">
             <% end %>
           </div>
           <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-medium text-theme-blue hover:text-theme-blue-light text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
