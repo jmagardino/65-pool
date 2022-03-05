@@ -1,18 +1,58 @@
-<h1>Show Contest</h1>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @contest.name %>
-  </li>
-
-  <li>
-    <strong> Registered Users </strong>
-    <%= inspect(Enum.map(@contest.users, fn user -> user.email end)) %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
-<span><%= link "Back", to: Routes.contest_path(@conn, :index) %></span>
+<!-- main container -->
+<div class="grid grid-cols-1 clear-both mt-6 md:mt-12">
+  <!-- card container -->
+  <div class="w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl">
+    <!-- avatar -->
+    <div class="my-2">
+      <img class="object-cover w-14 h-14 md:w-20 md:h-20 md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
+                        src={@contest.avatar} alt="">
+    </div>
+    <div class="md:w-auto mt-4 text-center font-medium text-theme-blue hover:text-theme-blue-light text-lg md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
+      <!-- contest name -->
+      <h4><%= @contest.name %></h4>
+    </div>
+    <!-- contests container -->
+    <div class="mx-auto mt-4 text-center border border-slate-200 rounded-xl bg-white">
+      <!-- contest details -->
+      <div class="grid justify-items-center md:grid-cols-12 md:grid-rows-2 grid-rows-2 md:gap-x-1 gap-y-0 md:p-4 p-6 min-h-max"
+                style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
+        <!-- ownership status -->
+        <%= if @contest.owner_account_id == @conn.assigns.current_user.id do %>
+          <div class="col-start-5 col-span-1 my-auto mx-auto text-xs mr-2 text-slate-300">
+            <div class=""><i class="fa-solid fa-user"></i></div>
+            <p class="md:inline-block hidden">owner</p>
+          </div>
+        <% end %>
+        <!-- next picks due -->
+        <div class="md:col-span-2 col-start-1 col-span-2 row-start-1 row-span-2 justify-self-center my-auto text-sm text-theme-darkgray  text-center md:text-center">
+          <h4 class="md:text-md font-medium">Next Picks Due</h4>
+          <p class="inline-block md:block">[date/time]</p>
+          <div class="inline-block md:ml-0 ml-2">
+            <i class="fa-regular fa-circle-check text-green-500 hidden"></i>
+            <i class="fa-regular fa-exclamation-circle text-orange-400 hidden"></i>
+            <i class="fa-solid fa-times-circle text-red-500 hidden"></i>
+            <i class="fa-regular fa-circle-dashed text-slate-200"></i>
+          </div>
+        </div>
+        <!-- ranking -->
+        <div class="md:col-span-2 col-start-4 col-span-1 row-start-1 row-span-2 flex md:flex-row flex-col my-auto mx-auto md:mx-4">
+          <div class="mx-auto md:mr-4 my-auto md:text-sm text-xs">
+            <i class="fa-duotone fa-trophy fa-2x text-amber-400 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x text-slate-400 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x text-amber-700 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x trophy-none text-slate-100"></i>
+          </div>
+          <div class="flex flex-row flex-nowrap justify-center text-darkgray">
+            <div class="flex-none my-auto">--</div>
+            <div class="shrink my-auto">/</div>
+            <div class="flex-none my-auto">--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <strong> Registered Users </strong>
+  <%= inspect(Enum.map(@contest.users, fn user -> user.email end)) %>
+  <span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
+  <span><%= link "Back", to: Routes.contest_path(@conn, :index) %></span>
+</div>
