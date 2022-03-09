@@ -59,20 +59,23 @@ for i <- 1..contest_count do
 end
 
 # -- GENERATE TEAMS -- #
-teams_data = %{name: SportsData.get_all_teams("FullName"), logo: SportsData.get_all_teams("WikipediaLogoUrl")}
+teams_data = %{
+  name: SportsData.get_all_teams("FullName"),
+  logo: SportsData.get_all_teams("WikipediaLogoUrl")
+}
 
 for i <- 1..32 do
   Repo.insert!(%Games.Team{
     id: i,
-    logo: Enum.at(teams_data.logo, i-1),
-    name: Enum.at(teams_data.name, i-1),
+    logo: Enum.at(teams_data.logo, i - 1),
+    name: Enum.at(teams_data.name, i - 1),
     inserted_at: ~N[2022-02-26 17:06:16],
     updated_at: ~N[2022-02-26 17:06:16]
   })
 end
 
 # -- GENERATE GAMES -- #
-for i <- 1..(div(32, 2)) do
+for i <- 1..div(32, 2) do
   home = i
   away = 33 - home
 
