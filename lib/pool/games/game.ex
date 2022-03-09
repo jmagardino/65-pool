@@ -10,6 +10,7 @@ defmodule Pool.Games.Game do
     belongs_to :home_team, Pool.Games.Team
     belongs_to :away_team, Pool.Games.Team
 
+    many_to_many :contests, Pool.Contests.Contest, join_through: "contests_games"
     timestamps()
   end
 
