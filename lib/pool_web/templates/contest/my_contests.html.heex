@@ -14,16 +14,16 @@
                 style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
           <!-- avatar -->
           <div class="my-auto row-start-2 row-span-2 md:row-span-2 w-12 lg:w-16">
-            <a href="#">
-              <img class="md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
+            <%= link to: Routes.contest_path(@conn, :show, contest) do %>
+              <img class="md:col-span-1 mx-auto my-auto text-center ring-2 ring-theme-blue nontouch:hover:ring-2 nontouch:hover:ring-theme-blue-light nontouch:active:ring-theme-blue-dark focus:ring-2 focus:ring-theme-blue-light rounded-full transition-all ease-in-out duration-200"
                         src="https://picsum.photos/200" alt="">
-            </a>
+            <% end %>
           </div>
-          <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-medium text-theme-blue hover:text-theme-blue-light text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
+          <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-medium text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
             <!-- contest name -->
-            <a href="#">
+            <%= link to: Routes.contest_path(@conn, :show, contest) do %>
               <h4><%= contest.name %></h4>
-            </a>
+            <% end %>
           </div>
           <!-- ownership status -->
           <%= if contest.owner_account_id == @conn.assigns.current_user.id do %>
@@ -48,7 +48,7 @@
             <div class="mx-auto md:mr-4 my-auto md:text-sm text-xs">
               <i class="fa-duotone fa-trophy fa-2x text-amber-400 hidden"></i>
               <i class="fa-duotone fa-trophy fa-2x text-slate-400 hidden"></i>
-              <i class="fa-duotone fa-trophy fa-2x text-amber-700 hidden"></i>              
+              <i class="fa-duotone fa-trophy fa-2x text-amber-700 hidden"></i>
               <i class="fa-duotone fa-trophy fa-2x trophy-none text-slate-100"></i>
             </div>
             <div class="flex flex-row flex-nowrap justify-center text-darkgray">
@@ -58,9 +58,9 @@
             </div>
           </div>
           <!-- action button -->
-          <button class="mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-theme-blue hover:text-theme-blue-light transition-all ease-in-out duration-200">
+          <%= link to: Routes.contest_path(@conn, :show, contest), class: "mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200" do %>
             <i class="fa-regular fa-angle-right"></i>
-          </button>
+          <% end %>
         </div>
       <% end %>
     </div>
