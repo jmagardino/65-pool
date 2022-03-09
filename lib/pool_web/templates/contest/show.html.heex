@@ -1,24 +1,124 @@
-<h1>Show Contest</h1>
+<!-- main container -->
+<div class="grid grid-cols-1 clear-both mt-6 md:mt-12">
+  <!-- nav items -->
+  <div class="flex justify-between w-11/12 md:max-w-3xl mx-auto px-2 md:px-6 text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
+    <div>
+      <%= link to: Routes.contest_path(@conn, :index) do %>
+        <i class="fa-solid fa-angle-left"></i>
+        <p class="inline-block">Back</p>
+      <% end %>
+    </div>
+    <%= if @contest.owner_account_id == @conn.assigns.current_user.id do %>
+      <div class="text-center text-theme-darkgray nontouch:hover:text-theme-gray nontouch:active:text-slate-700 active:text-slate-700 transition-all ease-in-out duration-200">
+        <%= link to: Routes.contest_path(@conn, :edit, @contest) do %>
+          <i class="fa-solid fa-gear"></i>
+          <p class="">Edit</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <!-- card container -->
+  <div class="w-11/12 md:max-w-3xl mx-auto p-2 md:p-6 rounded-xl">
+    <!-- avatar -->
+    <div class="my-2">
+      <img class="object-cover w-14 h-14 md:w-20 md:h-20 md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
+                        src={@contest.avatar} alt="">
+    </div>
+    <div class="md:w-auto mt-4 text-center font-medium text-theme-blue text-lg md:text-xl lg:text-2xl">
+      <!-- contest name -->
+      <h4><%= @contest.name %></h4>
+    </div>
+    <!-- contests container -->
+    <div class="mx-auto mt-4 text-center border border-slate-200 rounded-xl bg-white">
+      <!-- contest details -->
+      <div class="grid justify-items-center md:grid-cols-12 md:grid-rows-2 grid-rows-2 md:gap-x-1 gap-y-0 md:p-4 p-6 min-h-max"
+                style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
+        <!-- ownership status -->
+        <%= if @contest.owner_account_id == @conn.assigns.current_user.id do %>
+          <div class="col-start-5 col-span-1 my-auto mx-auto text-xs mr-2 text-slate-300">
+            <div class=""><i class="fa-solid fa-user"></i></div>
+            <p class="md:inline-block hidden">owner</p>
+          </div>
+        <% end %>
+        <!-- next picks due -->
+        <div class="md:col-span-2 col-start-1 col-span-2 row-start-1 row-span-2 justify-self-center my-auto text-sm text-theme-darkgray  text-center md:text-center">
+          <h4 class="md:text-md font-medium">Next Picks Due</h4>
+          <p class="inline-block md:block">[date/time]</p>
+          <div class="inline-block md:ml-0 ml-2">
+            <i class="fa-regular fa-circle-check text-green-500 hidden"></i>
+            <i class="fa-regular fa-exclamation-circle text-orange-400 hidden"></i>
+            <i class="fa-solid fa-times-circle text-red-500 hidden"></i>
+            <i class="fa-regular fa-circle-dashed text-slate-200"></i>
+          </div>
+        </div>
+        <!-- ranking -->
+        <div class="md:col-span-2 col-start-4 col-span-1 row-start-1 row-span-2 flex md:flex-row flex-col my-auto mx-auto md:mx-4">
+          <div class="mx-auto md:mr-4 my-auto md:text-sm text-xs">
+            <i class="fa-duotone fa-trophy fa-2x text-amber-400 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x text-slate-400 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x text-amber-700 hidden"></i>
+            <i class="fa-duotone fa-trophy fa-2x trophy-none text-slate-100"></i>
+          </div>
+          <div class="flex flex-row flex-nowrap justify-center text-darkgray">
+            <div class="flex-none my-auto">--</div>
+            <div class="shrink my-auto">/</div>
+            <div class="flex-none my-auto">--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4 class="font-semibold text-lg text-center text-gray-700 mt-6">Participants</h4>
+  <!-- Particpant Table -->
+  <div class="flex flex-col w-11/12 md:max-w-3xl mx-auto p-2 md:p-6">
+    <div class="-my-2 sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 rounded-xl">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-3 py-3 md:text-left text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
+                <th scope="col" class="px-3 py-3 md:text-left text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                <th scope="col" class="px-3 py-3 md:text-left text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
+                <th scope="col" class="relative px-3 py-3">
+                  <span class="sr-only">View</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <%= for user <- @contest.users do %>
+                <tr>
+                  <!-- player  -->
+                  <td class="px-3 py-4">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <!-- insert user.avatar -->
+                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium capitalize text-gray-900"><%= user.first_name <> " " <> user.last_name %></div>
+                      </div>
+                    </div>
+                  </td>
+                  <!-- rank -->
+                  <td class="px-2 py-4 whitespace-nowrap">
+                    <div class="text-md text-gray-700 text-center md:text-left">#1</div>
+                  </td>
+                  <!-- points -->
+                  <td class="px-2 py-4 whitespace-nowrap text-center md:text-left">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">47</span>
+                  </td>
+                  <!-- action - view user-game details -->
+                  <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="#" class="mr-2 md:mr-6 text-center md:text-left text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">View</a>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @contest.name %>
-  </li>
-
-  <li>
-    <strong> Registered Users </strong>
-    <%= inspect(Enum.map(@contest.users, fn user -> user.email end)) %>
-  </li>
-
-  <li>
-    <strong> Games </strong>
-    <% IO.inspect(@contest) %>
-    <%= inspect(Enum.map(@contest.games, fn game -> "#{game.home_team.name} vs #{game.away_team.name}" end)) %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
-<span><%= link "Back", to: Routes.contest_path(@conn, :index) %></span>

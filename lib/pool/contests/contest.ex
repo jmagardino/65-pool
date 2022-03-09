@@ -4,6 +4,7 @@ defmodule Pool.Contests.Contest do
 
   schema "contests" do
     field :name, :string
+    field :avatar, :string
 
     belongs_to :owner_account, Pool.Accounts.User
 
