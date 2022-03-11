@@ -22,6 +22,10 @@ config :pool, Pool.Weather,
   secret_key_openweather: "90e450a4996778f8bb2bd339c6f51ef7",
   endpoint_openweather: "http://api.openweathermap.org"
 
+# Configures SportsDataIO API
+config :pool, Pool.SportsData,
+  secret_key_sportsdata: "a376fb697a594cd2a97c927f344c6f07"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

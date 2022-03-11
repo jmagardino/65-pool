@@ -14,7 +14,10 @@
     <div class="text-center text-theme-gray leading-normal md:leading-relaxed md:mt-2 p-4 md:p-6 bg-slate-50 rounded-xl border border-slate-200 shadow">
       <p class="text-md">It may sound like adult swim at a retirement community, but at this pool, the only thing you’ll be swimming in is money.</p>
       <p class="text-md font-medium">Start playing today.</p>
-      <button class="bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark text-white font-medium py-2 px-4 rounded mt-8 transition-all ease-in-out duration-200">Get Started</button>
+      <%# <button class="bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark text-white font-medium py-2 px-4 rounded mt-8 transition-all ease-in-out duration-200">Get Started</button> %>
+      <%= link to: Routes.user_registration_path(@conn, :new) do %>
+        <button class="bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark text-white font-medium py-2 px-4 rounded mt-8 transition-all ease-in-out duration-200">Get Started</button>
+      <% end %>
     </div>
   </div>
 </section>

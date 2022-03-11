@@ -10,36 +10,24 @@
     <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-white">
       <%= for contest <- @contests do %>
         <!-- contest row -->
-        <div class="grid justify-items-center md:grid-cols-12 md:grid-rows-1 grid-rows-2 md:gap-x-1 gap-y-0 md:p-4 pl-0 pr-2 pb-2 pt-1 min-h-max"
-                style="grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr) ;">
+        <div class="grid justify-items-center grid-cols-10 grid-rows-2 md:gap-x-1 gap-y-0 md:p-2 pl-0 pr-2 py-2 min-h-max">
           <!-- avatar -->
-          <div class="my-auto row-start-2 row-span-2 md:row-span-2 w-12 lg:w-16">
-            <a href="#">
-              <img class="md:col-span-1 mx-auto my-auto text-center border-2 border-theme-blue rounded-full"
-                        src="https://picsum.photos/200" alt="">
-            </a>
+          <div class="my-auto md:justify-self-start md:ml-4 row-start-1 col-span-2 row-span-2">
+            <%= link to: Routes.contest_path(@conn, :show, contest) do %>
+              <img class="object-cover w-12 h-12 mx-auto my-auto ring-2 ring-theme-blue nontouch:hover:ring-2 nontouch:hover:ring-theme-blue-light nontouch:active:ring-theme-blue-dark focus:ring-2 focus:ring-theme-blue-light rounded-full transition-all ease-in-out duration-200"
+                        src={contest.avatar} alt="">
+            <% end %>
           </div>
-          <div class="md:col-span-5 col-span-2 md:w-auto w-fit row-span-2 justify-self-start my-auto text-left md:pl-2 font-medium text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
+          <div class="col-start-3 col-span-5 md:w-auto w-fit row-span-2 relative md:-left-12 justify-self-start my-auto text-left md:pl-2 font-medium text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark text-md md:text-xl lg:text-2xl transition-all ease-in-out duration-200">
             <!-- contest name -->
-            <a href="#">
+            <%= link to: Routes.contest_path(@conn, :show, contest) do %>
               <h4><%= contest.name %></h4>
-            </a>
+            <% end %>
           </div>
-          <!-- ownership status -->
-          <%= if contest.owner_account_id == @conn.assigns.current_user.id do %>
-            <div class="md:col-span-1 col-start-5 col-span-1 my-auto mx-auto text-xs text-slate-300">
-              <div><i class="fa-solid fa-user"></i></div>
-              <p class="md:inline-block hidden">owner</p>
-            </div>
-          <% end %>
           <!-- action button -->
-          <%= link to: Routes.contest_path(@conn, :join, contest), class: "mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-theme-blue hover:text-theme-blue-light transition-all ease-in-out duration-200", method: :post do %>
-          <%# <button class="mx-auto my-auto md:col-start-12 col-start-5 row-start-2 row-span-2 md:row-span-1 text-xl md:text-3xl text-theme-blue hover:text-theme-blue-light transition-all ease-in-out duration-200"> %>
-            <div class="md:col-span-1 col-start-5 col-span-1 my-auto mx-auto text-base">
-              <div><i class="fa fa-plus"></i></div>
-              <p class="md:inline-block">Join</p>
-            </div>
-          <%# </button> %>
+          <%= link to: Routes.contest_path(@conn, :join, contest), class: "my-auto col-start-8 col-span-3 row-start-1 row-span-2 w-auto md:w-max self-center justify-self-end mr-2 md:mr-4 text-md md:text-sm bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark text-white font-medium py-2 px-3 rounded transition-all ease-in-out duration-200", method: :post do %>
+            <i class="fa-solid fa-circle-plus round"></i>
+            Join
           <% end %>
         </div>
       <% end %>
