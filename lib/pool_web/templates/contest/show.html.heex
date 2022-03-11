@@ -14,11 +14,31 @@
 
   <li>
     <strong> Games </strong>
-    <% IO.inspect(@contest) %>
     <%= inspect(Enum.map(@contest.games, fn game -> "#{game.home_team.name} vs #{game.away_team.name}" end)) %>
   </li>
 
 </ul>
+
+<div>
+  <strong> Games needing picks </strong>
+  <%= for game <- @games_needing_picks do %>
+    <div>
+    <%= "#{game.home_team.name} vs #{game.away_team.name}" %>
+    <%= render PoolWeb.PickView, "form.html", Map.put(assigns, :action, Routes.contest_game_pick_path(@conn, :create, @contest.id, game)) |> Map.put(:game, game) %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <strong> Games with picks already</strong>
+  <% IO.inspect(@existing_pick_games) %>
+  <%= for {game, pick, pick_changeset} <- @existing_pick_games do %>
+    <div>
+    <%= "#{game.home_team.name} vs #{game.away_team.name}"%>
+    <%= render PoolWeb.PickView, "form.html", Map.put(assigns, :action, Routes.contest_game_pick_path(@conn, :update, @contest.id, game.id, pick.id)) |> Map.put(:pick_changeset, pick_changeset) |> Map.put(:game, game) %>
+    </div>
+  <% end %>
+</div>
 
 <span><%= link "Edit", to: Routes.contest_path(@conn, :edit, @contest) %></span> |
 <span><%= link "Back", to: Routes.contest_path(@conn, :index) %></span>

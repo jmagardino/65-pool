@@ -1,0 +1,5 @@
+<h1>Edit Pick</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.contest_game_pick_path(@conn, :update, @contest, @game, @pick)) %>
+
+<span><%= link "Back", to: Routes.pick_path(@conn, :index) %></span>

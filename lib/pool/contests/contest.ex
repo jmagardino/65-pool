@@ -7,6 +7,8 @@ defmodule Pool.Contests.Contest do
 
     belongs_to :owner_account, Pool.Accounts.User
 
+    has_many :picks, Pool.Picks.Pick
+
     many_to_many :users, Pool.Accounts.User, join_through: "contests_users", on_replace: :delete
     many_to_many :games, Pool.Games.Game, join_through: "contests_games", on_replace: :delete
 

@@ -1,0 +1,26 @@
+<h1>Listing Picks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spread</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for pick <- @picks do %>
+    <tr>
+      <td><%= pick.spread %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.pick_path(@conn, :show, pick) %></span>
+        <span><%= link "Edit", to: Routes.pick_path(@conn, :edit, pick) %></span>
+        <span><%= link "Delete", to: Routes.pick_path(@conn, :delete, pick), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Pick", to: Routes.pick_path(@conn, :new) %></span>

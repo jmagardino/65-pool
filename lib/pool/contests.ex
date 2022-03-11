@@ -54,7 +54,10 @@ defmodule Pool.Contests do
       ** (Ecto.NoResultsError)
 
   """
-  def get_contest!(id), do: Repo.get!(Contest, id) |> Repo.preload([:users, games: [:home_team, :away_team]])
+  def get_contest!(id),
+    do:
+      Repo.get!(Contest, id)
+      |> Repo.preload([:users, picks: [:game], games: [:home_team, :away_team]])
 
   @doc """
   Creates a contest.
