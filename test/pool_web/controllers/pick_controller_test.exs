@@ -3,9 +3,9 @@ defmodule PoolWeb.PickControllerTest do
 
   import Pool.PicksFixtures
 
-  @create_attrs %{spread: :over}
-  @update_attrs %{spread: :under}
-  @invalid_attrs %{spread: nil}
+  @create_attrs %{point_total: :over}
+  @update_attrs %{point_total: :under}
+  @invalid_attrs %{point_total: nil}
 
   describe "index" do
     test "lists all picks", %{conn: conn} do

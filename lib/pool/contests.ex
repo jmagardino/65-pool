@@ -72,6 +72,7 @@ defmodule Pool.Contests do
 
   """
   def create_contest(user, attrs \\ %{}) do
+    IO.inspect(attrs, label: "1")
     %Contest{}
     |> Contest.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:owner_account, user)

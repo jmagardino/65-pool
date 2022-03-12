@@ -11,10 +11,9 @@ defmodule Pool.PicksFixtures do
     {:ok, pick} =
       attrs
       |> Enum.into(%{
-        spread: :over
+        point_total: :over
       })
       |> Pool.Picks.create_pick()
-
     pick
   end
 end

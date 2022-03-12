@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Spread</th>
+      <th>Point Total</th>
 
       <th></th>
     </tr>
@@ -11,7 +11,7 @@
   <tbody>
 <%= for pick <- @picks do %>
     <tr>
-      <td><%= pick.spread %></td>
+      <td><%= pick.point_total %></td>
 
       <td>
         <span><%= link "Show", to: Routes.pick_path(@conn, :show, pick) %></span>

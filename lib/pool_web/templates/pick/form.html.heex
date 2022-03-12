@@ -5,9 +5,9 @@
     </div>
   <% end %>
 
-  <%= label f, :spread %>
-  <%= select f, :spread, Ecto.Enum.values(Pool.Picks.Pick, :spread) %>
-  <%= error_tag f, :spread %>
+  <%= label f, :point_total %>
+  <%= select f, :point_total, Ecto.Enum.values(Pool.Picks.Pick, :point_total) %>
+  <%= error_tag f, :point_total %>
   
   <%= label f, :ats_winner_team_id %>
   <%= select f, :ats_winner_team_id, [{@game.home_team.name, @game.home_team_id}, {@game.away_team.name, @game.away_team_id}] %>

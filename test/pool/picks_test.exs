@@ -8,7 +8,7 @@ defmodule Pool.PicksTest do
 
     import Pool.PicksFixtures
 
-    @invalid_attrs %{spread: nil}
+    @invalid_attrs %{point_total: nil}
 
     test "list_picks/0 returns all picks" do
       pick = pick_fixture()
@@ -21,10 +21,10 @@ defmodule Pool.PicksTest do
     end
 
     test "create_pick/1 with valid data creates a pick" do
-      valid_attrs = %{spread: :over}
+      valid_attrs = %{point_total: :over}
 
       assert {:ok, %Pick{} = pick} = Picks.create_pick(valid_attrs)
-      assert pick.spread == :over
+      assert pick.point_total == :over
     end
 
     test "create_pick/1 with invalid data returns error changeset" do
@@ -33,10 +33,10 @@ defmodule Pool.PicksTest do
 
     test "update_pick/2 with valid data updates the pick" do
       pick = pick_fixture()
-      update_attrs = %{spread: :under}
+      update_attrs = %{point_total: :under}
 
       assert {:ok, %Pick{} = pick} = Picks.update_pick(pick, update_attrs)
-      assert pick.spread == :under
+      assert pick.point_total == :under
     end
 
     test "update_pick/2 with invalid data returns error changeset" do

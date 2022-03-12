@@ -36,22 +36,20 @@ defmodule PoolWeb.PickController do
     render(conn, "show.html", pick: pick)
   end
 
-  def edit(conn, %{"id" => id} = params) do
+  def edit(conn, %{"id" => id}) do
     pick = Picks.get_pick!(id)
     changeset = Picks.change_pick(pick)
     render(conn, "edit.html", pick: pick, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "pick" => pick_params}) do
-    IO.inspect("joe")
-
+  def update(conn, %{"id" => id, "pick" => pick_params, "contest_id" => contest_id}) do
     pick = Picks.get_pick!(id)
 
     case Picks.update_pick(pick, pick_params) do
-      {:ok, pick} ->
+      {:ok, _pick} ->
         conn
         |> put_flash(:info, "Pick updated successfully.")
-        |> redirect(to: Routes.pick_path(conn, :show, pick))
+        |> redirect(to: Routes.contest_path(conn, :show, contest_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", pick: pick, changeset: changeset)
