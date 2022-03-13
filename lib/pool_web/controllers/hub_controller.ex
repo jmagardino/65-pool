@@ -8,6 +8,7 @@ defmodule PoolWeb.HubController do
   def index(conn, _params) do
     weather_data = Weather.get_weather()
     games = Games.list_games()
-    render(conn, "index.html", games: games, weather: weather_data, team_data: SportsData)
+    date = DateTime.utc_now()
+    render(conn, "index.html", games: games, date: date, weather: weather_data, team_data: SportsData)
   end
 end
