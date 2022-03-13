@@ -3,9 +3,11 @@ defmodule PoolWeb.HubController do
 
   alias Pool.Weather
   alias Pool.SportsData
+  alias Pool.Games
 
   def index(conn, _params) do
     weather_data = Weather.get_weather()
-    render(conn, "index.html", weather: weather_data, team_data: SportsData)
+    games = Games.list_games()
+    render(conn, "index.html", games: games, weather: weather_data, team_data: SportsData)
   end
 end

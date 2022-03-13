@@ -25,13 +25,8 @@ defmodule PoolWeb.HubView do
     end
   end
 
-  def stadium_details(key) do
-    %{
-      name: Pool.SportsData.get_team_details(key).stadium_details["Name"],
-      locale:
-        Pool.SportsData.get_team_details(key).stadium_details["City"] <>
-          ", " <>
-          Pool.SportsData.get_team_details(key).stadium_details["State"]
-    }
+  # TODO -- format date/time properly
+  def format_date(date) do
+    "#{date.month}/#{date.day} #{date.hour}:#{date.minute}"
   end
 end

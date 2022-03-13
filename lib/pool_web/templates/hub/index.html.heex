@@ -29,7 +29,7 @@
         <!-- next picks due -->
         <div class="col-start-2 col-span-3 md:col-start-4 md:col-span-2 justify-self-center my-auto text-sm text-theme-darkgray text-center font-medium">
           <h4 class="md:text-md font-medium">Next Picks Due</h4>
-          <div class="timer" :class="time().days < 1 ? 'text-red-500' : (time().days < 2 && 'text-orange-400')" x-data="timer(new Date(2022,1,13,18,30))" x-init="init();">
+          <div class="timer" :class="time().days < 1 ? 'text-red-500' : (time().days < 2 && 'text-orange-400')" x-data="timer(new Date(2022,3,13,18,30))" x-init="init();">
             <p class="inline-block" x-text="time().days + 'd'"></p>
             <p class="inline-block" x-text="time().hours + 'h'"></p>
             <p class="inline-block" x-text="time().minutes + 'm'"></p>
@@ -51,49 +51,51 @@
     <!-- games container -->
     <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-white">
       <!-- for loop start -->
-      <div x-data="{ open: false }">
-        <!-- game row -->
-        <div class="grid justify-items-center grid-cols-12 grid-rows-4 md:gap-x-1 gap-y-0 md:p-4 px-2 py-2 min-h-max text-theme-darkgray">
-          <!-- team 1 -->
-          <div class="col-start-1 col-span-4 row-start-1 row-span-4 self-center">
-            <img class="" src="https://sportteamslogo.com/api?key=002d905d4ba94e708e355a4b3641f55a&size=medium&tid=4416" alt="">
-            <p class="text-sm">CIN</p>
+      <%= for game <- @games do %>
+        <div x-data="{ open: false }">
+          <!-- game row -->
+          <div class="grid justify-items-center grid-cols-12 grid-rows-4 md:gap-x-1 gap-y-0 md:p-4 px-2 py-2 min-h-max text-theme-darkgray">
+            <!-- away team -->
+            <div class="col-start-1 col-span-4 row-start-1 row-span-4 self-center pt-2">
+              <img class="w-12 h-12 object-scale-down py-1" src={game.away_team.logo} alt="">
+              <p class="text-sm"><%= game.away_team.key %></p>
+            </div>
+            <!-- spread -->
+            <p class="col-start-4 col-span-1 row-start-4 text-xs font-medium"></p>
+            <!-- game time -->
+            <p class="col-start-4 col-span-5 row-start-1 text-xs"><%= format_date(game.start) %></p>
+            <!-- at -->
+            <p class="col-start-5 col-span-3 row-start-2 row-span-2 self-center text-md">at</p>
+            <!-- over/under -->
+            <p class="col-start-5 col-span-3 row-start-4 text-xs font-medium">O/U 48.5</p>
+            <!-- spread -->
+            <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium">-4</p>
+            <!-- home team -->
+            <div class="col-start-8 col-span-4 row-start-1 row-span-4 self-center pt-2">
+              <img class="w-12 h-12 object-scale-down py-1" src={game.home_team.logo} alt="">
+              <p class="text-sm"><%= game.home_team.key %></p>
+            </div>
+            <!-- action button -->
+            <button @click="open = ! open" class="mx-auto my-auto col-start-12 row-start-2 row-span-2 text-xl md:text-3xl text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
+              <i x-show="!open" class="fa-regular fa-angle-right"></i>
+              <i x-show="open" class="fa-regular fa-angle-down"></i>
+            </button>
           </div>
-          <!-- spread -->
-          <p class="col-start-4 col-span-1 row-start-4 text-xs font-medium"></p>
-          <!-- game time -->
-          <p class="col-start-4 col-span-5 row-start-1 text-xs">Feb 13 6:30 PM</p>
-          <!-- at -->
-          <p class="col-start-5 col-span-3 row-start-2 row-span-2 self-center text-md">at</p>
-          <!-- over/under -->
-          <p class="col-start-5 col-span-3 row-start-4 text-xs font-medium">O/U 48.5</p>
-          <!-- spread -->
-          <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium">-4</p>
-          <!-- team 2 -->
-          <div class="col-start-8 col-span-4 row-start-1 row-span-4 self-center">
-            <img class="" src="https://sportteamslogo.com/api?key=002d905d4ba94e708e355a4b3641f55a&size=medium&tid=4387" alt="">
-            <p class="text-sm">LAR</p>
+          <!-- game details -->
+          <div x-show="open" class="grid grid-cols-9 py-4 text-xs text-center">
+            <div class="col-start-5 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
+              <%# <img class="w-1/2" src={@weather.icon} alt="weather"> %>
+              <div class="text-2xl pr-4"><i class={set_icon(@weather.code)}></i></div>
+              <p class="pr-2"><%= @weather.temp %>&#8457;</p>
+            </div>
+            <div class="col-start-7 col-span-3 px-2">
+              <p><%= game.home_team.stadium_details["Name"] %></p>
+              <p><%= game.home_team.stadium_details["City"] <> ", " <> game.home_team.stadium_details["State"] %></p>
+            </div>
           </div>
-          <!-- action button -->
-          <button @click="open = ! open" class="mx-auto my-auto col-start-12 row-start-2 row-span-2 text-xl md:text-3xl text-theme-blue nontouch:hover:text-theme-blue-light nontouch:active:text-theme-blue-dark active:text-theme-blue-dark transition-all ease-in-out duration-200">
-            <i x-show="!open" class="fa-regular fa-angle-right"></i>
-            <i x-show="open" class="fa-regular fa-angle-down"></i>
-          </button>
         </div>
-        <!-- game details -->
-        <div x-show="open" class="grid grid-cols-9 py-4 text-xs text-center">
-          <div class="col-start-5 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
-            <%# <img class="w-1/2" src={@weather.icon} alt="weather"> %>
-            <div class="text-2xl pr-4"><i class={set_icon(@weather.code)}></i></div>
-            <p class="pr-2"><%= @weather.temp %>&#8457;</p>
-          </div>
-          <div class="col-start-7 col-span-3 px-2">
-            <p><%= stadium_details("LAR").name %></p>
-            <p><%= stadium_details("LAR").locale %></p>
-          </div>
-        </div>
-      </div>
-      <!-- for loop end -->
+        <!-- for loop end -->
+      <% end %>
     </div>
   </div>
 </div>
