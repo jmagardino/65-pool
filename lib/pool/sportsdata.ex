@@ -31,18 +31,20 @@ defmodule Pool.SportsData do
     team_details[team_key]
   end
 
-  def get_team_details_by_id(team_id) do
-    team_ids = Pool.SportsData.get_all_teams("TeamID")
-    i = Enum.find_index(team_ids, fn t -> t == team_id end)
-    team_details = Enum.zip([Enum.at(team_ids, i)], [map_details(i)]) |> Enum.into(%{})
-    team_details[team_id]
-  end
+  # def get_team_details_by_id(team_id) do
+  #   team_ids = Pool.SportsData.get_all_teams("TeamID")
+  #   i = Enum.find_index(team_ids, fn t -> t == team_id end)
+  #   team_details = Enum.zip([Enum.at(team_ids, i)], [map_details(i)]) |> Enum.into(%{})
+  #   team_details[team_id]
+  # end
 
   def map_details(i) do
     %{
+      key: Enum.at(Pool.SportsData.get_all_teams("Key"), i),
       name: Enum.at(Pool.SportsData.get_all_teams("Name"), i),
       city: Enum.at(Pool.SportsData.get_all_teams("City"), i),
       full_name: Enum.at(Pool.SportsData.get_all_teams("FullName"), i),
+      team_id: Enum.at(Pool.SportsData.get_all_teams("TeamID"), i),
       logo: Enum.at(Pool.SportsData.get_all_teams("WikipediaLogoUrl"), i),
       conference: Enum.at(Pool.SportsData.get_all_teams("Conference"), i),
       division: Enum.at(Pool.SportsData.get_all_teams("Division"), i),

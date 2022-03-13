@@ -51,32 +51,33 @@ for i <- 1..contest_count do
   Repo.insert!(%Contests.Contest{
     id: i,
     name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16],
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
     owner_account_id: :rand.uniform(3),
     avatar: PoolWeb.ContestView.set_avatar()
   })
 end
 
 # -- GENERATE TEAMS -- #
-for i <- 1..32 do
+SportsData.get_all_teams("Key") |> Enum.with_index() |> Enum.each(fn {k, i} ->
   Repo.insert!(%Games.Team{
-    id: i,
-    logo: SportsData.get_team_details_by_id(i).logo,
-    name: SportsData.get_team_details_by_id(i).full_name,
-    city: SportsData.get_team_details_by_id(i).city,
-    key: SportsData.get_team_details_by_id(i).key,
-    conference: SportsData.get_team_details_by_id(i).conference,
-    division: SportsData.get_team_details_by_id(i).division,
-    stadium_details: SportsData.get_team_details_by_id(i).stadium_details,
-    colors: SportsData.get_team_details_by_id(i).colors,
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16]
+    id: i + 1,
+    logo: SportsData.get_team_details(k).logo,
+    name: SportsData.get_team_details(k).full_name,
+    city: SportsData.get_team_details(k).city,
+    key: SportsData.get_team_details(k).key,
+    conference: SportsData.get_team_details(k).conference,
+    division: SportsData.get_team_details(k).division,
+    stadium_details: SportsData.get_team_details(k).stadium_details,
+    colors: SportsData.get_team_details(k).colors,
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
-end
+end)
 
 # -- GENERATE GAMES -- #
-for i <- 1..div(32, 2) do
+game_count = 16
+for i <- 1..game_count do
   home = i
   away = 33 - home
 
@@ -87,7 +88,7 @@ for i <- 1..div(32, 2) do
     start: DateTime.truncate(Faker.DateTime.forward(14), :second),
     home_team_id: home,
     away_team_id: away,
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16]
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
 end
