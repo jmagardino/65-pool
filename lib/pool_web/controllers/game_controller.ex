@@ -21,8 +21,6 @@ defmodule PoolWeb.GameController do
     home_team = Pool.Games.get_team!(home_team_id)
     away_team = Pool.Games.get_team!(away_team_id)
 
-    IO.inspect(game_params)
-
     case Games.create_game(game_params, home_team, away_team) do
       {:ok, game} ->
         conn
