@@ -69,9 +69,9 @@
             <!-- at -->
             <p class="col-start-5 col-span-3 row-start-2 row-span-2 self-center text-md">at</p>
             <!-- over/under -->
-            <p class="col-start-5 col-span-3 row-start-4 text-xs font-medium">O/U 48.5</p>
+            <p class="col-start-5 col-span-3 row-start-4 text-xs font-medium">O/U <%= game.over_under %></p>
             <!-- spread -->
-            <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium">-4</p>
+            <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium"><%= game.spread %></p>
             <!-- home team -->
             <div class="col-start-8 col-span-4 row-start-1 row-span-4 self-center pt-2">
               <img class="w-12 h-12 object-scale-down py-1" src={game.home_team.logo} alt="">

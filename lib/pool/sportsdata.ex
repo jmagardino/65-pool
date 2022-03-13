@@ -16,12 +16,17 @@ defmodule Pool.SportsData do
   end
 
   # Data for all current NFL teams
-  @type search_key() :: String.t()
+  @type search_key() :: String.t() | nil
   @spec get_all_teams(search_key()) :: any()
-  def get_all_teams(key) do
+  def get_all_teams(key \\ nil) do
     endpoint = "https://api.sportsdata.io/v3/nfl/scores/json/Teams"
     data = make_call(endpoint)
-    for %{^key => value} <- data, do: value
+
+    if !key do
+      data
+    else
+      for %{^key => value} <- data, do: value
+    end
   end
 
   def get_team_details(team_key) do
@@ -31,20 +36,13 @@ defmodule Pool.SportsData do
     team_details[team_key]
   end
 
-  # def get_team_details_by_id(team_id) do
-  #   team_ids = Pool.SportsData.get_all_teams("TeamID")
-  #   i = Enum.find_index(team_ids, fn t -> t == team_id end)
-  #   team_details = Enum.zip([Enum.at(team_ids, i)], [map_details(i)]) |> Enum.into(%{})
-  #   team_details[team_id]
-  # end
-
   def map_details(i) do
     %{
       key: Enum.at(Pool.SportsData.get_all_teams("Key"), i),
       name: Enum.at(Pool.SportsData.get_all_teams("Name"), i),
       city: Enum.at(Pool.SportsData.get_all_teams("City"), i),
       full_name: Enum.at(Pool.SportsData.get_all_teams("FullName"), i),
-      team_id: Enum.at(Pool.SportsData.get_all_teams("TeamID"), i),
+      global_id: Enum.at(Pool.SportsData.get_all_teams("GlobalTeamID"), i),
       logo: Enum.at(Pool.SportsData.get_all_teams("WikipediaLogoUrl"), i),
       conference: Enum.at(Pool.SportsData.get_all_teams("Conference"), i),
       division: Enum.at(Pool.SportsData.get_all_teams("Division"), i),
@@ -56,5 +54,18 @@ defmodule Pool.SportsData do
         d: Enum.at(Pool.SportsData.get_all_teams("QuaternaryColor"), i)
       }
     }
+  end
+
+  # Data for all games in a season
+  @spec get_all_games(search_key()) :: any()
+  def get_all_games(key \\ nil, season \\ "2021") do
+    endpoint = "https://api.sportsdata.io/v3/nfl/scores/json/Schedules/#{season}"
+    data = make_call(endpoint)
+
+    if !key do
+      data
+    else
+      for %{^key => value} <- data, do: value
+    end
   end
 end

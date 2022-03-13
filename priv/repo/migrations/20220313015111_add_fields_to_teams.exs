@@ -3,6 +3,7 @@ defmodule Pool.Repo.Migrations.AddFieldsToTeams do
 
   def change do
     alter table(:teams) do
+      add :global_id, :integer
       add :city, :string
       add :key, :string
       add :conference, :string

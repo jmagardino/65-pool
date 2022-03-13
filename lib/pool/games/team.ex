@@ -3,6 +3,7 @@ defmodule Pool.Games.Team do
   import Ecto.Changeset
 
   schema "teams" do
+    field :global_id, :integer
     field :logo, :string
     field :name, :string
     field :city, :string

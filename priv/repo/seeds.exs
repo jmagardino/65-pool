@@ -59,9 +59,12 @@ for i <- 1..contest_count do
 end
 
 # -- GENERATE TEAMS -- #
-SportsData.get_all_teams("Key") |> Enum.with_index() |> Enum.each(fn {k, i} ->
+SportsData.get_all_teams("Key")
+|> Enum.with_index()
+|> Enum.each(fn {k, i} ->
   Repo.insert!(%Games.Team{
-    id: i + 1,
+    id: SportsData.get_team_details(k).global_id,
+    global_id: SportsData.get_team_details(k).global_id,
     logo: SportsData.get_team_details(k).logo,
     name: SportsData.get_team_details(k).full_name,
     city: SportsData.get_team_details(k).city,
@@ -76,19 +79,17 @@ SportsData.get_all_teams("Key") |> Enum.with_index() |> Enum.each(fn {k, i} ->
 end)
 
 # -- GENERATE GAMES -- #
-game_count = 16
-for i <- 1..game_count do
-  home = i
-  away = 33 - home
-
+Enum.filter(SportsData.get_all_games(), fn g -> g["GlobalGameID"] != 0 && g["Week"] == 1 end)
+|> Enum.with_index()
+|> Enum.each(fn {game, i} ->
   Repo.insert!(%Games.Game{
-    id: i,
-    over_under: Enum.random(60..130) / 2,
-    spread: Enum.random(1..30) / 2,
+    id: i + 1,
+    over_under: game["OverUnder"],
+    spread: game["PointSpread"],
     start: DateTime.truncate(Faker.DateTime.forward(14), :second),
-    home_team_id: home,
-    away_team_id: away,
+    home_team_id: game["GlobalHomeTeamID"],
+    away_team_id: game["GlobalAwayTeamID"],
     inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
     updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
-end
+end)
