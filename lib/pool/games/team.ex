@@ -5,12 +5,11 @@ defmodule Pool.Games.Team do
   schema "teams" do
     field :logo, :string
     field :name, :string
-    field :name, :string
     field :city, :string
     field :key, :string
     field :conference, :string
     field :division, :string
-    field :stadium_details, :string
+    field :stadium_details, :map
     field :colors, {:map, :string}
 
     has_many :away_games, Pool.Games.Game, foreign_key: :home_team_id
