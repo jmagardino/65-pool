@@ -25,7 +25,12 @@ defmodule PoolWeb.Router do
 
     post "/contests/:id/join", ContestController, :join
     get "/contests/my_contests", ContestController, :my_contests
-    resources "/contests", ContestController
+
+    resources "/contests", ContestController do
+      resources "/games", GameController do
+        resources "/picks", PickController
+      end
+    end
 
     resources "/teams", TeamController
     resources "/games", GameController

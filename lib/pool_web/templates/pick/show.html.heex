@@ -1,0 +1,13 @@
+<h1>Show Pick</h1>
+
+<ul>
+
+  <li>
+    <strong>Point Total:</strong>
+    <%= @pick.point_total %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.pick_path(@conn, :edit, @pick) %></span> |
+<span><%= link "Back", to: Routes.pick_path(@conn, :index) %></span>

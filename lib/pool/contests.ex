@@ -54,7 +54,10 @@ defmodule Pool.Contests do
       ** (Ecto.NoResultsError)
 
   """
-  def get_contest!(id), do: Repo.get!(Contest, id) |> Repo.preload([:users, games: [:home_team, :away_team]])
+  def get_contest!(id),
+    do:
+      Repo.get!(Contest, id)
+      |> Repo.preload([:users, picks: [:game], games: [:home_team, :away_team]])
 
   @doc """
   Creates a contest.
@@ -69,6 +72,7 @@ defmodule Pool.Contests do
 
   """
   def create_contest(user, attrs \\ %{}) do
+    IO.inspect(attrs, label: "1")
     %Contest{}
     |> Contest.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:owner_account, user)
