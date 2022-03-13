@@ -24,4 +24,14 @@ defmodule PoolWeb.HubView do
       "50n" -> "fa-solid fa-cloud-fog"
     end
   end
+
+  def stadium_details(key) do
+    %{
+      name: Pool.SportsData.get_team_details(key).stadium_details["Name"],
+      locale:
+        Pool.SportsData.get_team_details(key).stadium_details["City"] <>
+          ", " <>
+          Pool.SportsData.get_team_details(key).stadium_details["State"]
+    }
+  end
 end
