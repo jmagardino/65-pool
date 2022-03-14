@@ -29,4 +29,10 @@ defmodule PoolWeb.HubView do
   def format_date(date) do
     "#{date.month}/#{date.day} #{date.hour}:#{date.minute}"
   end
+
+  # def position_spread() do
+  #   if Games.game.spread > 0 do
+
+  #   end
+  # end
 end

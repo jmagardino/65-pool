@@ -1,5 +1,8 @@
 defmodule Pool.SportsData do
   # SportsDataIO API
+
+  # --- Utility Functions --- #
+
   def make_call(endpoint, params \\ %{}) do
     config = Application.get_env(:pool, __MODULE__)
     key = Keyword.fetch!(config, :secret_key_sportsdata)
@@ -14,6 +17,8 @@ defmodule Pool.SportsData do
     # Poison.decode!(res.body, keys: :atoms)
     Poison.decode!(res.body)
   end
+
+  # --- Team Data --- #
 
   # Data for all current NFL teams
   @type search_key() :: String.t() | nil
@@ -32,11 +37,11 @@ defmodule Pool.SportsData do
   def get_team_details(team_key) do
     team_keys = Pool.SportsData.get_all_teams("Key")
     i = Enum.find_index(team_keys, fn t -> t == team_key end)
-    team_details = Enum.zip([Enum.at(team_keys, i)], [map_details(i)]) |> Enum.into(%{})
+    team_details = Enum.zip([Enum.at(team_keys, i)], [map_team_details(i)]) |> Enum.into(%{})
     team_details[team_key]
   end
 
-  def map_details(i) do
+  def map_team_details(i) do
     %{
       key: Enum.at(Pool.SportsData.get_all_teams("Key"), i),
       name: Enum.at(Pool.SportsData.get_all_teams("Name"), i),
@@ -56,9 +61,11 @@ defmodule Pool.SportsData do
     }
   end
 
-  # Data for all games in a season
+  # --- Game Data --- #
+
+  # General data for all games in a specified season
   @spec get_all_games(search_key()) :: any()
-  def get_all_games(key \\ nil, season \\ "2021") do
+  def get_all_games(key \\ nil, season \\ 2021) do
     endpoint = "https://api.sportsdata.io/v3/nfl/scores/json/Schedules/#{season}"
     data = make_call(endpoint)
 
@@ -67,5 +74,32 @@ defmodule Pool.SportsData do
     else
       for %{^key => value} <- data, do: value
     end
+  end
+
+  # Odds and general data for games in a specified week
+  @spec get_game_odds_by_week(search_key()) :: any()
+  def get_game_odds_by_week(key \\ nil, season \\ 2021, week \\ 1) do
+    endpoint = "https://api.sportsdata.io/v3/nfl/odds/json/GameOddsByWeek/#{season}/#{week}"
+    data = make_call(endpoint)
+
+    if !key do
+      data
+    else
+      for %{^key => value} <- data, do: value
+    end
+  end
+
+  def get_game_odds_details(game_id) do
+    game_ids = Pool.SportsData.get_game_odds_by_week("GlobalGameId")
+    i = Enum.find_index(game_ids, fn g -> g == game_id end)
+    game_details = Enum.zip([Enum.at(game_ids, i)], [map_game_details(i)]) |> Enum.into(%{})
+    game_details[game_id]
+  end
+
+  def map_game_details(i) do
+    %{
+      global_id: Enum.at(Pool.SportsData.get_game_odds_by_week("GlobalGameId"), i),
+      pregame_odds: Enum.at(Enum.at(Pool.SportsData.get_game_odds_by_week("PregameOdds"), 0), i)
+    }
   end
 end

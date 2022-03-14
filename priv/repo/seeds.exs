@@ -79,16 +79,16 @@ SportsData.get_all_teams("Key")
 end)
 
 # -- GENERATE GAMES -- #
-Enum.filter(SportsData.get_all_games(), fn g -> g["GlobalGameID"] != 0 && g["Week"] == 1 end)
-|> Enum.with_index()
-|> Enum.each(fn {game, i} ->
+SportsData.get_game_odds_by_week()
+|> Enum.each(fn game ->
+  {:ok, start, 0} = DateTime.from_iso8601(game["DateTime"] <> "Z")
   Repo.insert!(%Games.Game{
-    id: i + 1,
-    over_under: game["OverUnder"],
-    spread: game["PointSpread"],
-    start: DateTime.truncate(Faker.DateTime.forward(14), :second),
-    home_team_id: game["GlobalHomeTeamID"],
-    away_team_id: game["GlobalAwayTeamID"],
+    id: game["GlobalGameId"],
+    over_under: SportsData.get_game_odds_details(game["GlobalGameId"]).pregame_odds["OverUnder"],
+    spread: SportsData.get_game_odds_details(game["GlobalGameId"]).pregame_odds["HomePointSpread"],
+    start: start,
+    home_team_id: game["GlobalHomeTeamId"],
+    away_team_id: game["GlobalAwayTeamId"],
     inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
     updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
