@@ -1,5 +1,6 @@
 defmodule PoolWeb.HubView do
   use PoolWeb, :view
+  alias Pool.Contests
 
   # sets weather icon
   def set_icon(code) do
