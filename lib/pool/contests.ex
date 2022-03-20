@@ -40,6 +40,23 @@ defmodule Pool.Contests do
     Repo.all(query)
   end
 
+  def joined_contests_needing_picks(user_id) do
+    query =
+      from c in Contest,
+        join: u in assoc(c, :users),
+        preload: [users: u],
+        where: u.id == ^user_id,
+        join: g in assoc(c, :games),
+        preload: [games: g],
+        left_join: p in assoc(c, :picks),
+        preload: [picks: p],
+        # having: count(p.id) < count(g.id),
+        where: p.game_id in [g.id]
+        # group_by: [g.id, c.id, p.id, u.id]
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single contest.
 
@@ -73,6 +90,7 @@ defmodule Pool.Contests do
   """
   def create_contest(user, attrs \\ %{}) do
     IO.inspect(attrs, label: "1")
+
     %Contest{}
     |> Contest.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:owner_account, user)

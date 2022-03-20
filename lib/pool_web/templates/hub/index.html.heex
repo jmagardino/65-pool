@@ -11,7 +11,7 @@
     <!-- contests container -->
     <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit bg-white">
       <!-- for loop start -->
-      <%= for contest <- Contests.joined_contests(@current_user.id) do %>
+      <%= for contest <- Contests.joined_contests_needing_picks(@current_user.id) do %>
         <!-- contest row -->
         <div class="grid justify-items-center grid-cols-6 grid-rows-2 md:grid-rows-1 md:gap-x-1 gap-y-0 md:p-4 px-2 py-2 min-h-max">
           <!-- avatar -->
