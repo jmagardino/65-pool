@@ -59,7 +59,7 @@
           <!-- game row -->
           <div class="grid justify-items-center grid-cols-12 grid-rows-4 md:gap-x-1 gap-y-0 md:p-4 px-2 py-2 min-h-max text-theme-darkgray">
             <!-- away team -->
-            <div class="col-start-1 col-span-4 row-start-1 row-span-4 self-center pt-2">
+            <div class="col-start-1 col-span-3 row-start-1 row-span-4 self-center pt-2">
               <img class="w-12 h-12 object-scale-down py-1" src={game.away_team.logo} alt="">
               <p class="text-sm"><%= game.away_team.key %></p>
             </div>
@@ -74,7 +74,7 @@
             <!-- spread -->
             <p class="col-start-8 col-span-1 row-start-4 text-xs font-medium"><%= game.spread %></p>
             <!-- home team -->
-            <div class="col-start-8 col-span-4 row-start-1 row-span-4 self-center pt-2">
+            <div class="col-start-9 col-span-3 row-start-1 row-span-4 self-center pt-2">
               <img class="w-12 h-12 object-scale-down py-1" src={game.home_team.logo} alt="">
               <p class="text-sm"><%= game.home_team.key %></p>
             </div>
@@ -86,13 +86,17 @@
           </div>
           <!-- game details -->
           <div x-show="open" class="grid grid-cols-9 py-4 text-xs text-center">
-            <div class="col-start-5 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
-              <%# <img class="w-1/2" src={@weather.icon} alt="weather"> %>
-              <div class="text-2xl pr-4"><i class={set_icon(@weather.code)}></i></div>
-              <p class="pr-2"><%= @weather.temp %>&#8457;</p>
+            <!-- weather -->
+            <div class="col-start-4 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
+              <div class="text-2xl pr-4"><i class={get_forecast(game.id)[:icon]}></i></div>
+              <div class="flex flex-col">
+                <p class="pr-2"><%= get_forecast(game.id)[:temp] %>&#8457;</p>
+                <p class="pr-2"><%= get_forecast(game.id)[:wind] %> mph</p>
+              </div>
             </div>
-            <div class="col-start-7 col-span-3 px-2">
-              <p><%= game.home_team.stadium_details["Name"] %></p>
+            <!-- stadium -->
+            <div class="col-start-6 col-span-4 px-2">
+              <p class="font-medium"><%= game.home_team.stadium_details["Name"] %></p>
               <p><%= game.home_team.stadium_details["City"] <> ", " <> game.home_team.stadium_details["State"] %></p>
             </div>
           </div>
