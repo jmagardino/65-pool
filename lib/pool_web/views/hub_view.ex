@@ -21,6 +21,7 @@ defmodule PoolWeb.HubView do
       "Heavy Intensity Rain" -> "fa-solid fa-cloud-rain"
       "Snow" -> "fa-solid fa-snowflakes"
       nil -> ""
+      # night time icons
       # "Clear Sky" -> "fa-solid fa-moon-stars"
       # "Few Clouds" -> "fa-solid fa-moon-cloud"
       # "Scattered Clouds" -> "fa-solid fa-cloud-moon"
@@ -58,10 +59,11 @@ defmodule PoolWeb.HubView do
     "#{date.month}/#{date.day} #{date.hour}:#{date.minute}"
   end
 
-  # places the spread text next to the favorite team
-  # def position_spread() do
-  #   if Games.game.spread > 0 do
-
-  #   end
-  # end
+  # determines favorite for DOM spread placement
+  def home_favorite(home_spread) do
+    if home_spread > 0 do
+      false
+    end
+    true
+  end
 end
