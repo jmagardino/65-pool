@@ -52,7 +52,21 @@ defmodule Pool.Contests do
         preload: [picks: p],
         # having: count(p.id) < count(g.id),
         where: p.game_id in [g.id]
-        # group_by: [g.id, c.id, p.id, u.id]
+
+    # group_by: [g.id, c.id, p.id, u.id]
+
+    Repo.all(query)
+  end
+
+  def next_game_start(contest_id) do
+    query =
+      from(
+        g in Pool.Games.Game,
+        join: c in assoc(g, :contests),
+        where: c.id == ^contest_id,
+        group_by: [c.id],
+        select: min(g.start)
+      )
 
     Repo.all(query)
   end
