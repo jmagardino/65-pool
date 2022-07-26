@@ -1,0 +1,1 @@
+call "%~dp0\pool" eval Pool.Release.migrate
