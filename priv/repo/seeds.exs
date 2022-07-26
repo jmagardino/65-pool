@@ -89,6 +89,9 @@ SportsData.get_game_odds_by_week()
     start: start,
     home_team_id: game["GlobalHomeTeamId"],
     away_team_id: game["GlobalAwayTeamId"],
+    forecast_temp: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastWindChill"],
+    forecast_desc: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastDescription"],
+    forecast_wind: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastWindSpeed"],
     inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
     updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })

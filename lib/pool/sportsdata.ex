@@ -102,4 +102,30 @@ defmodule Pool.SportsData do
       pregame_odds: Enum.at(Enum.at(Pool.SportsData.get_game_odds_by_week("PregameOdds"), 0), i)
     }
   end
+
+  def get_forecast(game_id) do
+    game = Enum.find(get_all_games(), fn g -> g["GlobalGameID"] == game_id end)
+    [temp: game["ForecastWindChill"], icon: weather_icon(game["ForecastDescription"]), wind: game["ForecastWindSpeed"]]
+  end
+
+  def weather_icon(desc) do
+    case desc do
+      "Clear Sky" -> "fa-solid fa-sun"
+      "Few Clouds" -> "fa-solid fa-sun-cloud"
+      "Scattered Clouds" -> "fa-solid fa-cloud-sun"
+      "Broken Clouds" -> "fa-solid fa-cloud-sun"
+      "Overcast Clouds" -> "fa-solid fa-clouds-sun"
+      "Light Rain" -> "fa-solid fa-cloud-drizzle"
+      "Moderate Rain" -> "fa-solid fa-cloud-rain"
+      "Heavy Intensity Rain" -> "fa-solid fa-cloud-rain"
+      "Snow" -> "fa-solid fa-snowflakes"
+      nil -> ""
+      # night time icons
+      # "Clear Sky" -> "fa-solid fa-moon-stars"
+      # "Few Clouds" -> "fa-solid fa-moon-cloud"
+      # "Scattered Clouds" -> "fa-solid fa-cloud-moon"
+      # "Overcast Clouds" -> "fa-solid fa-clouds-moon"
+      # "Heavy Intensity Rain" -> "fa-solid fa-cloud-moon-rain"
+    end
+  end
 end

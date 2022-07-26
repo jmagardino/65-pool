@@ -88,10 +88,11 @@
           <div x-show="open" class="grid grid-cols-9 py-4 text-xs text-center">
             <!-- weather -->
             <div class="col-start-4 col-span-2 justify-self-end flex flex-row items-center text-theme-darkgray">
-              <div class="text-2xl pr-4"><i class={get_forecast(game.id)[:icon]}></i></div>
+              <%# <div class="text-2xl pr-4"><i class={get_forecast(game.id)[:icon]}></i></div> %>
+              <div class="text-2xl pr-4"><i class={weather_icon(game.forecast_desc)}></i></div>
               <div class="flex flex-col">
-                <p class="pr-2"><%= get_forecast(game.id)[:temp] %>&#8457;</p>
-                <p class="pr-2"><%= get_forecast(game.id)[:wind] %> mph</p>
+                <p class="pr-2"><%= game.forecast_temp %>&#8457;</p>
+                <p class="pr-2"><%= game.forecast_wind %> mph</p>
               </div>
             </div>
             <!-- stadium -->
