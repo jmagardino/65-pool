@@ -1,10 +1,20 @@
 defmodule Pool.Weather do
   # OpenWeather API calls
+  alias Pool.SportsData
+
+  def stadium_weather(team) do
+    target = "/data/2.5/weather?"
+    stadium = SportsData.get_team_details(team).stadium_details
+    [lat, lon] = [stadium["GeoLat"], stadium["GeoLong"]]
+    query = %{"lat" => lat, "lon" => lon, "units" => "imperial"}
+    %{main: metrics, weather: [weather | _tail]} = make_call(target, query)
+    %{temp: round(metrics.temp), code: weather.icon}
+  end
 
   # returns temp and weather icon
-  def get_weather() do
+  def get_weather(city, state, country \\ "us") do
     target = "/data/2.5/weather?"
-    [lat, lon] = geocode("los angeles", "ca")
+    [lat, lon] = geocode(city, state)
     query = %{"lat" => lat, "lon" => lon, "units" => "imperial"}
     %{main: metrics, weather: [weather | _tail]} = make_call(target, query)
     %{temp: round(metrics.temp), code: weather.icon}

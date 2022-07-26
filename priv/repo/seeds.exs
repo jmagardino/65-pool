@@ -51,42 +51,48 @@ for i <- 1..contest_count do
   Repo.insert!(%Contests.Contest{
     id: i,
     name: Faker.Pizza.topping() <> " " <> Faker.Superhero.suffix(),
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16],
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
     owner_account_id: :rand.uniform(3),
     avatar: PoolWeb.ContestView.set_avatar()
   })
 end
 
 # -- GENERATE TEAMS -- #
-teams_data = %{
-  name: SportsData.get_all_teams("FullName"),
-  logo: SportsData.get_all_teams("WikipediaLogoUrl")
-}
-
-for i <- 1..32 do
+SportsData.get_all_teams("Key")
+|> Enum.with_index()
+|> Enum.each(fn {k, i} ->
   Repo.insert!(%Games.Team{
-    id: i,
-    logo: Enum.at(teams_data.logo, i - 1),
-    name: Enum.at(teams_data.name, i - 1),
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16]
+    id: SportsData.get_team_details(k).global_id,
+    global_id: SportsData.get_team_details(k).global_id,
+    logo: SportsData.get_team_details(k).logo,
+    name: SportsData.get_team_details(k).full_name,
+    city: SportsData.get_team_details(k).city,
+    key: SportsData.get_team_details(k).key,
+    conference: SportsData.get_team_details(k).conference,
+    division: SportsData.get_team_details(k).division,
+    stadium_details: SportsData.get_team_details(k).stadium_details,
+    colors: SportsData.get_team_details(k).colors,
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
-end
+end)
 
 # -- GENERATE GAMES -- #
-for i <- 1..div(32, 2) do
-  home = i
-  away = 33 - home
-
+SportsData.get_game_odds_by_week()
+|> Enum.each(fn game ->
+  {:ok, start, 0} = DateTime.from_iso8601(game["DateTime"] <> "Z")
   Repo.insert!(%Games.Game{
-    id: i,
-    over_under: Enum.random(60..130) / 2,
-    spread: Enum.random(1..30) / 2,
-    start: DateTime.truncate(Faker.DateTime.forward(14), :second),
-    home_team_id: home,
-    away_team_id: away,
-    inserted_at: ~N[2022-02-26 17:06:16],
-    updated_at: ~N[2022-02-26 17:06:16]
+    id: game["GlobalGameId"],
+    over_under: SportsData.get_game_odds_details(game["GlobalGameId"]).pregame_odds["OverUnder"],
+    spread: SportsData.get_game_odds_details(game["GlobalGameId"]).pregame_odds["HomePointSpread"],
+    start: start,
+    home_team_id: game["GlobalHomeTeamId"],
+    away_team_id: game["GlobalAwayTeamId"],
+    forecast_temp: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastWindChill"],
+    forecast_desc: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastDescription"],
+    forecast_wind: Enum.find(SportsData.get_all_games(), fn g -> g["GlobalGameID"] == game["GlobalGameId"] end)["ForecastWindSpeed"],
+    inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
+    updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   })
-end
+end)

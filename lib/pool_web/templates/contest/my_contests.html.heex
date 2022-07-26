@@ -35,7 +35,13 @@
           <!-- next picks due -->
           <div class="md:col-span-2 col-start-2 col-span-2 row-span-2 justify-self-center my-auto text-sm text-theme-darkgray  text-center md:text-center">
             <h4 class="md:text-md font-medium">Next Picks Due</h4>
-            <p class="inline-block md:block">[date/time]</p>
+            <!--p class="inline-block md:block"><%= next_picks_due(contest.id) %></p-->
+            <div class="timer" :class="time().days < 1 ? 'text-red-500' : (time().days < 2 && 'text-orange-400')" x-data={"timer(#{next_picks_due(contest.id)})"} x-init="init();">
+              <p class="inline-block" x-text="time().days + 'd'"></p>
+              <p class="inline-block" x-text="time().hours + 'h'"></p>
+              <p class="inline-block" x-text="time().minutes + 'm'"></p>
+              <p class="inline-block" x-text="time().seconds + 's'"></p>
+            </div>
             <div class="inline-block md:ml-0 ml-2">
               <i class="fa-regular fa-circle-check text-green-500 hidden"></i>
               <i class="fa-regular fa-exclamation-circle text-orange-400 hidden"></i>
@@ -66,3 +72,4 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" src={Routes.static_path(@conn, "/images/custom.js")}></script>
