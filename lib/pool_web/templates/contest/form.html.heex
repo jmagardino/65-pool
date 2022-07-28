@@ -4,19 +4,20 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
-   <div class="bg-slate-50 w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl border border-slate-200">
-      <div>
-        <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2"%>
-        <%= text_input f, :name, placeholder: "test", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-        <%= error_tag f, :name %>
-
-        <%= label f, :games %>
-        <%= multiple_select f, :game_ids, Enum.map(@games, & {"#{&1.home_team.name} vs #{&1.away_team.name}", Integer.to_string(&1.id)}) %>
-        <%= error_tag f, :games %>
-      </div>
+  <div class="flex flex-col justify-evenly gap-x-2 pb-5">
+    <div class="mb-4 sm:flex-grow flex flex-col items-center px-8">
+      <%= label f, :name, class: "block text-left self-start text-gray-700 text-md font-medium mb-1"%>
+      <%= text_input f, :name, placeholder: "Contest name...", class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= error_tag f, :name %>
     </div>
-  <div class="py-4">
-    <%= submit "Save", class: "bg-theme-blue hover:bg-theme-blue-light text-white py-2 px-4 rounded-full" %>
+    <div class="mb-4 sm:flex-grow flex flex-col items-center px-8">
+      <%= label f, :games, class: "block text-left self-start text-gray-700 text-md font-medium mb-1"%>
+      <%= multiple_select f, :game_ids, Enum.map(@games, & {"#{&1.home_team.name} vs #{&1.away_team.name}", Integer.to_string(&1.id)}), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= error_tag f, :games %>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row gap-y-4 gap-x-4 items-center justify-between px-8 mx-auto md:mt-12">
+    <%= link "Cancel", to: Routes.contest_path(@conn, :index), class: "w-full md:w-4/12 h-10 md:h-10 px-2 py-2 bg-slate-400 nontouch:hover:bg-slate-300 nontouch:active:bg-slate-500 active:bg-slate-500 transition-all ease-in-out duration-300 text-white font-medium rounded" %>
+    <%= submit "Create", class: "w-full md:w-4/12 h-12 md:h-10 px-2 py-2 bg-theme-blue nontouch:hover:bg-theme-blue-light nontouch:active:bg-theme-blue-dark active:bg-theme-blue-dark transition-all ease-in-out duration-300 text-white font-medium rounded" %>
   </div>
 </.form>

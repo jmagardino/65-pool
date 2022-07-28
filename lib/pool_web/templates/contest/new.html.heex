@@ -1,12 +1,8 @@
-<div class="py-5">
-<div class="bg-slate-50 w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl border border-slate-200 shadow">
-
-<h1 class="text-theme-blue font-semibold">Create a Contest</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.contest_path(@conn, :create)) %>
-
-<span class="py-4">
-    <%= link "Cancel", to: Routes.contest_path(@conn, :index), class: "bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full"%>
-</span>
-</div>
+<div class="mt-8 md:mt-24 py-5">
+  <div class="bg-slate-50 w-11/12 md:max-w-3xl mx-auto p-3 md:p-6 rounded-xl border border-slate-200 shadow">
+    <h3 class="mb-2 md:mb-8 text-theme-blue font-medium text-2xl md:text-3xl">New Contest</h3>
+    <div class="mx-auto grid auto-rows-auto w-full h-fit max-h-min min-h-full text-center border border-slate-200 rounded-xl divide-y divide-inherit py-6 bg-white">
+      <%= render "form.html", Map.put(assigns, :action, Routes.contest_path(@conn, :create)) %>
+    </div>
+  </div>
 </div>
